@@ -1,0 +1,14 @@
+{
+    "name": "sort",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "repository": "https://github.com/fedeghe/sort.git",
+    "author": "fedeghe <fedeghe@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "jest": "^25.1.0"
+    }
+}
