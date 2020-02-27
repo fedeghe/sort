@@ -1,6 +1,7 @@
 const _ = require('lodash'),
     quick = require('./quick'),
     quickObj = require('./quickObj'),
+    merge = require('./merge'),
     arrs = require('./benchmark/randomArr')
 
 describe('sort ', () => {
@@ -8,7 +9,7 @@ describe('sort ', () => {
         SETobj = arrs.SETobj;
     let native = [], nativeObj = [];
 
-    it('native', () => {
+    test('native', () => {
         const start = performance.now();
         native = [...SET].sort((a, b) => a > b ? 1 : -1);
         const mid = performance.now();
@@ -20,7 +21,7 @@ describe('sort ', () => {
         console.log('native [obj]: ', (end - mid).toFixed(1)+'ms')
     })
 
-    it('quick', () => {
+    test('quick', () => {
         const start = performance.now(),
             quick_int = quick([...SET]),
             mid = performance.now(),
@@ -31,10 +32,22 @@ describe('sort ', () => {
         expect(quick_obj).toEqual(nativeObj);
         console.log('quick [int]: ', (mid - start).toFixed(1)+'ms')
         console.log('quick [obj]: ', (end - mid).toFixed(1)+'ms')
-        
     });
 
-    it('_', () => {
+    test('merge', () => {
+        const start = performance.now(),
+            ordered_int = merge([...SET], (a, b) => a < b),
+            end = performance.now(),
+            startDef = performance.now(),
+            ordered_obj = merge([...SETobj], (a, b) => a.num < b.num ),
+            endDef = performance.now();
+
+        expect(ordered_int.length).toEqual(ordered_obj.length);
+        console.log('merge [int]: ', (end - start).toFixed(1)+'ms')
+        console.log('merge [obj]: ', (endDef - startDef).toFixed(1)+'ms') 
+    });
+
+    test('_', () => {
         const start = performance.now(),
             _int = _.sortBy([...SET]),
             mid = performance.now(),
@@ -45,6 +58,5 @@ describe('sort ', () => {
         expect(_obj).toEqual(nativeObj);
         console.log('_ [int]: ', (mid - start).toFixed(1)+'ms')
         console.log('_ [obj]: ', (end - mid).toFixed(1)+'ms')
-        
     });
 });

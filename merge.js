@@ -1,9 +1,9 @@
-function merge (left, right) {
+function merge (left, right, fn) {
     let resultArray = [], leftIndex = 0, rightIndex = 0;
   
     // We will concatenate values into the resultArray in order
     while (leftIndex < left.length && rightIndex < right.length) {
-      if (left[leftIndex] < right[rightIndex]) {
+      if (fn(left[leftIndex], right[rightIndex])) {
         resultArray.push(left[leftIndex]);
         leftIndex++;
       } else {
@@ -16,7 +16,7 @@ function merge (left, right) {
         .concat(left.slice(leftIndex))
         .concat(right.slice(rightIndex));
 }
-function mergeSort (unsortedArray) {
+function mergeSort (unsortedArray, fn) {
     if (unsortedArray.length <= 1) {
       return unsortedArray;
     }
@@ -25,8 +25,10 @@ function mergeSort (unsortedArray) {
         right = unsortedArray.slice(middle);
   
     return merge(
-      mergeSort(left), mergeSort(right)
+      mergeSort(left, fn),
+      mergeSort(right, fn),
+      fn
     );
 }
 
-module.exports = mergeSort
+module.exports = (A, fn) => mergeSort(A, fn)
