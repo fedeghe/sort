@@ -1,14 +1,11 @@
 const quick = require('./quick'),
-    quickFunc = require('./quickfunc');
+    quickFunc = require('./quickfunc'),
+    arrs = require('./benchmark/randomArr')
 
 describe('sort ', () => {
-    const len = 1e5;
-    const base = Array.from({length: len}, i => i)
-    const SET = base.map(() => parseInt(Math.random()*len), 10);
-    const SETfunc = base.map(() => ({
-        num: parseInt(Math.random()*len, 10)
-    }));
-
+    const SET = arrs.SET,
+        SETfunc = arrs.SETfunc;
+        
     it('quick', () => {
         const start = performance.now(),
             ordererSET = quick([...SET]),
