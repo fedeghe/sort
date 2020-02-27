@@ -2,7 +2,7 @@ const quick = require('./quick'),
     quickFunc = require('./quickfunc');
 
 describe('sort ', () => {
-    const len = 1e1;
+    const len = 1e5;
     const base = Array.from({length: len}, i => i)
     const SET = base.map(() => parseInt(Math.random()*len), 10);
     const SETfunc = base.map(() => ({
@@ -31,8 +31,8 @@ describe('sort ', () => {
             endDef = performance.now();
 
         expect(ordererSET).toEqual(ordererDEF);
-        console.log('time: ', (end - start).toFixed(1)+'ms')
-        console.log('def: ', (endDef - startDef).toFixed(1)+'ms')
+        console.log('timeFunc: ', (end - start).toFixed(1)+'ms')
+        console.log('defFunc: ', (endDef - startDef).toFixed(1)+'ms')
         
     });
 });
