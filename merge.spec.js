@@ -6,7 +6,6 @@ const SET = benchmarks.SET,
     SETfunc = benchmarks.SETfunc;
 
 describe('mergesort ', () => {
-    
     test('quick', () => {
         const start = performance.now(),
             ordererSET = merge([...SET]),
