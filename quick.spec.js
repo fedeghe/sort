@@ -1,35 +1,50 @@
-const quick = require('./quick'),
-    quickFunc = require('./quickfunc'),
+const _ = require('lodash'),
+    quick = require('./quick'),
+    quickObj = require('./quickObj'),
     arrs = require('./benchmark/randomArr')
 
 describe('sort ', () => {
     const SET = arrs.SET,
-        SETfunc = arrs.SETfunc;
-        
+        SETobj = arrs.SETobj;
+    let native = [], nativeObj = [];
+
+    it('native', () => {
+        const start = performance.now();
+        native = [...SET].sort((a, b) => a > b ? 1 : -1);
+        const mid = performance.now();
+        nativeObj = [...SETobj].sort((a, b) => a.num > b.num ? 1 : -1);
+        const end = performance.now();
+
+        expect(native.length).toEqual(nativeObj.length);
+        console.log('native [int]: ', (mid - start).toFixed(1)+'ms')
+        console.log('native [obj]: ', (end - mid).toFixed(1)+'ms')
+    })
+
     it('quick', () => {
         const start = performance.now(),
-            ordererSET = quick([...SET]),
-            end = performance.now(),
-            startDef = performance.now(),
-            ordererDEF = [...SET].sort((a, b) => a > b ? 1 : -1),
-            endDef = performance.now();
+            quick_int = quick([...SET]),
+            mid = performance.now(),
+            quick_obj = quickObj([...SETobj], (a, b) => a.num < b.num, (a, b) => a.num > b.num),
+            end = performance.now();
 
-        expect(ordererSET).toEqual(ordererDEF);
-        console.log('time: ', (end - start).toFixed(1)+'ms')
-        console.log('def: ', (endDef - startDef).toFixed(1)+'ms')
+        expect(quick_int).toEqual(native);
+        expect(quick_obj).toEqual(nativeObj);
+        console.log('quick [int]: ', (mid - start).toFixed(1)+'ms')
+        console.log('quick [obj]: ', (end - mid).toFixed(1)+'ms')
         
     });
-    it('quickFunc', () => {
-        const start = performance.now(),
-            ordererSET = quickFunc([...SETfunc], (a, b) => a.num < b.num, (a, b) => a.num > b.num),
-            end = performance.now(),
-            startDef = performance.now(),
-            ordererDEF = [...SETfunc].sort((a, b) => a.num > b.num ? 1 : -1),
-            endDef = performance.now();
 
-        expect(ordererSET).toEqual(ordererDEF);
-        console.log('timeFunc: ', (end - start).toFixed(1)+'ms')
-        console.log('defFunc: ', (endDef - startDef).toFixed(1)+'ms')
+    it('_', () => {
+        const start = performance.now(),
+            _int = _.sortBy([...SET]),
+            mid = performance.now(),
+            _obj = _.sortBy([...SETobj], 'num'),
+            end = performance.now();
+
+        expect(_int).toEqual(native);
+        expect(_obj).toEqual(nativeObj);
+        console.log('_ [int]: ', (mid - start).toFixed(1)+'ms')
+        console.log('_ [obj]: ', (end - mid).toFixed(1)+'ms')
         
     });
 });

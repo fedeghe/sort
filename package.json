@@ -9,6 +9,7 @@
     "author": "fedeghe <fedeghe@gmail.com>",
     "license": "MIT",
     "dependencies": {
-        "jest": "^25.1.0"
+        "jest": "^25.1.0",
+        "lodash": "^4.17.15"
     }
 }
