@@ -1,12 +1,8 @@
 const swap = require('./utils.js').swap
 
 const gnome = (items, fn) => {
-    let array = [],
+    let array = items ? [...items] : [],
         position = 1;
-    
-    if ( items ) {
-        array = [...items];
-    }
     
     while ( position < items.length ) {
         if ( fn(array[position], array[position - 1]) ) {
