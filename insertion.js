@@ -1,11 +1,11 @@
 let insertion = (arr, fn) => {
     let length = arr.length;
     for (let i = 1; i < length; i++) {
-        let key = arr[i];
-        let j = i - 1;
+        let key = arr[i],
+            j = i - 1;
         while (j >= 0 && fn(arr[j], key)) {
             arr[j + 1] = arr[j];
-            j = j - 1;
+            j--;
         }
         arr[j + 1] = key;
     }
