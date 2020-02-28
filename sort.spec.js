@@ -14,7 +14,27 @@ const _ = require('lodash'),
     shell = require('./shell'),
     shaker = require('./cocktail_shaker'),
     comb = require('./comb'),
-    arrs = require('./benchmark/randomArr')
+    arrs = require('./benchmark/randomArr');
+    fs = require('fs');
+
+
+const writeStats = (file, data) => {
+    try {
+        if (!fs.existsSync(file)) {
+            fs.writeFile(file, data.reduce((acc, el) => `${acc}${el.join(',')}\n` , ''), function(err) {
+                if(err) {
+                    return console.log(err);
+                }
+            }); 
+        } else {
+            fs.appendFile(file, `${data[1].join(',')}\n`, function (err) {
+                if (err) throw err;
+              });
+        }
+    } catch(err) {
+        console.error(err)
+    }
+}
 
 describe('sort ', () => {
     const SET = arrs.SET,
@@ -29,27 +49,43 @@ describe('sort ', () => {
         const int = [],
             obj = [];
         let intRes = [],
-            objRes = []
+            objRes = [],
+            csvInt = [[], []],
+            csvObj = [[], []];
         Object.keys(times).forEach(strategy => {
+            
             if ('int' in times[strategy]){
-                int.push({[strategy]: parseFloat(times[strategy].int.toFixed(3), 10) })
+                csvInt[0].push(strategy);
+                let val = parseFloat(times[strategy].int.toFixed(3), 10)
+                int.push({[strategy]: val});
+                csvInt[1].push(val);
             }
+            
             if ('obj' in times[strategy]){
-                obj.push({[strategy]: parseFloat(times[strategy].obj.toFixed(3), 10) })
+                csvObj[0].push(strategy);
+                let val = parseFloat(times[strategy].obj.toFixed(3), 10);
+                obj.push({[strategy]: val });
+                csvObj[1].push(val);
             }
-        })
-        intRes = int.sort((a, b) => Object.values(a)[0] > Object.values(b)[0] ? 1 : -1)
-        objRes = obj.sort((a, b) => Object.values(a)[0] > Object.values(b)[0] ? 1 : -1)
+        });
 
+        const intPath = './stats.int.csv',
+            objPath = './stats.obj.csv';
+        writeStats(intPath, csvInt);
+        writeStats(objPath, csvObj);
+
+        intRes = int.sort((a, b) => Object.values(a)[0] > Object.values(b)[0] ? 1 : -1);
+        objRes = obj.sort((a, b) => Object.values(a)[0] > Object.values(b)[0] ? 1 : -1);
+        
         console.log(intRes.reduce((acc, o) => {
             let k = Object.keys(o)[0]
             acc += `\n${k}: ${o[k]}`
             return acc
-        }, 'Leaderboard (INT):'))
+        }, 'Leaderboard (INT):'));
         console.log(objRes.reduce((acc, o) => {
-            let k = Object.keys(o)[0]
-            acc += `\n${k}: ${o[k]}`
-            return acc
+            let k = Object.keys(o)[0];
+            acc += `\n${k}: ${o[k]}`;
+            return acc;
         }, 'Leaderboard (OBJ):'))
         
     })
