@@ -1,29 +1,29 @@
 function merge (left, right, fn) {
-    let resultArray = [], leftIndex = 0, rightIndex = 0;
-  
-    // We will concatenate values into the resultArray in order
-    while (leftIndex < left.length && rightIndex < right.length) {
-      if (fn(left[leftIndex], right[rightIndex])) {
-        resultArray.push(left[leftIndex]);
-        leftIndex++;
+    let res = [],
+        leftI = 0, rightI = 0,
+        leftL = left.length, rightL = right.length;
+
+    while (leftI < leftL && rightI < rightL) {
+      if (fn(left[leftI], right[rightI])) {
+        res.push(left[leftI]);
+        leftI++;
       } else {
-        resultArray.push(right[rightIndex]);
-        rightIndex++;
+        res.push(right[rightI]);
+        rightI++;
       }
     }
   
-    return resultArray
-        .concat(left.slice(leftIndex))
-        .concat(right.slice(rightIndex));
+    return res
+        .concat(left.slice(leftI))
+        .concat(right.slice(rightI));
 }
-function mergeSort (unsortedArray, fn) {
-    if (unsortedArray.length <= 1) {
-      return unsortedArray;
+function mergeSort (arr, fn) {
+    if (arr.length <= 1) {
+      return arr;
     }
-    const middle = Math.floor(unsortedArray.length / 2),
-        left = unsortedArray.slice(0, middle),
-        right = unsortedArray.slice(middle);
-  
+    const middle = arr.length >>> 1,
+        left = arr.slice(0, middle),
+        right = arr.slice(middle);
     return merge(
       mergeSort(left, fn),
       mergeSort(right, fn),
@@ -31,4 +31,4 @@ function mergeSort (unsortedArray, fn) {
     );
 }
 
-module.exports = (A, fn) => mergeSort(A, fn)
+module.exports = (arr, fn) => mergeSort(arr, fn)

@@ -42,7 +42,8 @@ describe('sort ', () => {
             ordered_obj = merge([...SETobj], (a, b) => a.num < b.num ),
             endDef = performance.now();
 
-        expect(ordered_int.length).toEqual(ordered_obj.length);
+        expect(ordered_int).toEqual(native);
+        expect(ordered_obj).toEqual(nativeObj);
         console.log('merge [int]: ', (end - start).toFixed(1)+'ms')
         console.log('merge [obj]: ', (endDef - startDef).toFixed(1)+'ms') 
     });
