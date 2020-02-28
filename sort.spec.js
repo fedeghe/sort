@@ -7,11 +7,12 @@ const _ = require('lodash'),
     selection = require('./selection'),
     counting = require('./counting'),
     counting2 = require('./counting2'),
-    countingO = require('./countingO'),
+    countingObj = require('./countingObj'),
     radix = require('./radix'),
     bitonic = require('./bitonic'),
     gnome = require('./gnome'),
     shell = require('./shell'),
+    shaker = require('./cocktail_shaker'),
     comb = require('./comb'),
     arrs = require('./benchmark/randomArr')
 
@@ -39,12 +40,18 @@ describe('sort ', () => {
         })
         intRes = int.sort((a, b) => Object.values(a)[0] > Object.values(b)[0] ? 1 : -1)
         objRes = obj.sort((a, b) => Object.values(a)[0] > Object.values(b)[0] ? 1 : -1)
-        console.log('LeaderBoard:');
-        console.log('int:', Object.keys(intRes).reduce((acc, el) => {
-            acc + `\n${el}: ${intRes[el]}`
+
+        console.log(intRes.reduce((acc, o) => {
+            let k = Object.keys(o)[0]
+            acc += `\n${k}: ${o[k]}`
             return acc
-        }, 'Leaderboard:'))
-        console.log('obj:', objRes)
+        }, 'Leaderboard (INT):'))
+        console.log(objRes.reduce((acc, o) => {
+            let k = Object.keys(o)[0]
+            acc += `\n${k}: ${o[k]}`
+            return acc
+        }, 'Leaderboard (OBJ):'))
+        
     })
 
     test('native', () => {
@@ -61,8 +68,6 @@ describe('sort ', () => {
             int: mid - start,
             obj: end - mid
         };
-        // console.log('native [int]: ', (mid - start).toFixed(1) + 'ms')
-        // console.log('native [obj]: ', (end - mid).toFixed(1) + 'ms')
     })
 
     test('quick', () => {
@@ -78,8 +83,6 @@ describe('sort ', () => {
             int: mid - start,
             obj: end - mid
         };
-        // console.log('quick [int]: ', (mid - start).toFixed(1) + 'ms')
-        // console.log('quick [obj]: ', (end - mid).toFixed(1) + 'ms')
     });
 
     test('merge', () => {
@@ -95,8 +98,6 @@ describe('sort ', () => {
             int: mid - start,
             obj: end - mid
         };
-        // console.log('merge [int]: ', (mid - start).toFixed(1) + 'ms')
-        // console.log('merge [obj]: ', (end - mid).toFixed(1) + 'ms') 
     });
 
     test('bubble', () => {
@@ -112,8 +113,6 @@ describe('sort ', () => {
             int: mid - start,
             obj: end - mid
         };
-        // console.log('bubble [int]: ', (mid - start).toFixed(1) + 'ms')
-        // console.log('bubble [obj]: ', (end - mid).toFixed(1) + 'ms') 
     });
 
     test('insertion', () => {
@@ -129,8 +128,6 @@ describe('sort ', () => {
             int: mid - start,
             obj: end - mid
         };
-        // console.log('insertion [int]: ', (mid - start).toFixed(1) + 'ms')
-        // console.log('insertion [obj]: ', (end - mid).toFixed(1) + 'ms') 
     });
 
     test('selection', () => {
@@ -146,9 +143,8 @@ describe('sort ', () => {
             int: mid - start,
             obj: end - mid
         };
-        // console.log('selection [int]: ', (mid - start).toFixed(1) + 'ms')
-        // console.log('selection [obj]: ', (end - mid).toFixed(1) + 'ms') 
     });
+
 
     test('counting', () => {
         const start = performance.now(),
@@ -161,7 +157,6 @@ describe('sort ', () => {
         times.counting = {
             int: end - start
         };
-        // console.log('counting [int]: ', (end - start).toFixed(1) + 'ms')
     });
     test('counting2', () => {
         const start = performance.now(),
@@ -172,19 +167,17 @@ describe('sort ', () => {
         times.counting2 = {
             int: end - start
         };
-        // console.log('counting [int]: ', (end - start).toFixed(1) + 'ms')
     });
 
-    test('countingO', () => {
+    test('countingObj', () => {
         const start = performance.now(),
             set = [...SETobj],
-            ordered = countingO(set, n => n.num),
+            ordered = countingObj(set, n => n.num),
             end = performance.now();
         expect(ordered).toEqual(nativeObj);
-        times.countingO = {
+        times.countingObj = {
             obj: end - start
         };
-        // console.log('counting [int]: ', (end - start).toFixed(1) + 'ms')
     });
 
     test('radix', () => {
@@ -195,7 +188,6 @@ describe('sort ', () => {
         times.radix = {
             int: end - start
         };
-        // console.log('radix [int]: ', (end - start).toFixed(1) + 'ms')
     });
 
     test('bitonic', () => {
@@ -206,18 +198,22 @@ describe('sort ', () => {
         times.bitonic = {
             int: end - start
         };
-        // console.log('bitonic [int]: ', (end - start).toFixed(1) + 'ms')
     });
+
 
     test('gnome', () => {
         const start = performance.now(),
-            ordered = gnome([...SET]),
+            ordered_int = gnome([...SET], (a, b) => a >= b),
+            mid = performance.now(),
+            ordered_obj = gnome([...SETobj], (a, b) => a.num >= b.num),
             end = performance.now();
-        expect(ordered).toEqual(native);
+
+        expect(ordered_int).toEqual(native);
+        expect(ordered_obj).toEqual(nativeObj);
         times.gnome = {
-            int: end - start
+            int: mid - start,
+            obj: end - mid
         };
-        // console.log('gnome [int]: ', (end - start).toFixed(1) + 'ms')
     });
 
     test('shell', () => {
@@ -228,16 +224,22 @@ describe('sort ', () => {
         times.shell = {
             int: end - start
         };
-        // console.log('shell [int]: ', (end - start).toFixed(1) + 'ms')
     });
 
-    // test('comb', () => {
-    //     const start = performance.now(),
-    //         ordered = comb([...SET]),
-    //         end = performance.now();
-    //     expect(ordered).toEqual(native);
-    //     console.log('comb [int]: ', (end - start).toFixed(1) + 'ms')
-    // });
+    test('shaker', () => {
+        const start = performance.now(),
+            ordered_int = shaker([...SET], (a, b) => a > b),
+            mid = performance.now(),
+            ordered_obj = shaker([...SETobj], (a, b) => a.num > b.num),
+            end = performance.now();
+
+        expect(ordered_int).toEqual(native);
+        expect(ordered_obj).toEqual(nativeObj);
+        times.shaker = {
+            int: mid - start,
+            obj: end - mid
+        };
+    });
     
     test('lodash', () => {
         const start = performance.now(),
@@ -252,7 +254,5 @@ describe('sort ', () => {
             int: mid - start,
             obj: end - mid
         };
-        // console.log('lodash [int]: ', (mid - start).toFixed(1) + 'ms')
-        // console.log('lodash [obj]: ', (end - mid).toFixed(1) + 'ms')
     });
 });
