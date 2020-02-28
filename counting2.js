@@ -1,10 +1,9 @@
-const counting = (arr) => {
+const counting = arr => {
     let i = 0,
-        j = 0,
         len = arr.length,
         count = [];
 
-    for (i = 0; i < len; i++) {
+    for (; i < len; i++) {
         count[arr[i]] = typeof count[arr[i]] !== 'undefined'
             ? count[arr[i]] + 1
             : 1;
