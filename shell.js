@@ -15,7 +15,6 @@ const createGaps = a => {
 const shellSort = a => {
 	var gaps = createGaps(a),
 		temp;
-
 	for (var i = 0, j = gaps.length, gap; i < j; i += 1) {
 		gap = gaps[i];
 		for (var x = gap, y = a.length; x < y; x += 1) {
