@@ -10,6 +10,7 @@ const _ = require('lodash'),
     bitonic = require('./bitonic'),
     gnome = require('./gnome'),
     shell = require('./shell'),
+    comb = require('./comb'),
     arrs = require('./benchmark/randomArr')
 
 describe('sort ', () => {
@@ -141,6 +142,14 @@ describe('sort ', () => {
         expect(ordered).toEqual(native);
         console.log('shell [int]: ', (end - start).toFixed(1) + 'ms')
     });
+
+    // test('comb', () => {
+    //     const start = performance.now(),
+    //         ordered = comb([...SET]),
+    //         end = performance.now();
+    //     expect(ordered).toEqual(native);
+    //     console.log('comb [int]: ', (end - start).toFixed(1) + 'ms')
+    // });
     
     test('lodash', () => {
         const start = performance.now(),
