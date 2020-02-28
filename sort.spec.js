@@ -9,6 +9,7 @@ const _ = require('lodash'),
     radix = require('./radix'),
     bitonic = require('./bitonic'),
     gnome = require('./gnome'),
+    shell = require('./shell'),
     arrs = require('./benchmark/randomArr')
 
 describe('sort ', () => {
@@ -131,6 +132,14 @@ describe('sort ', () => {
             end = performance.now();
         expect(ordered).toEqual(native);
         console.log('gnome [int]: ', (end - start).toFixed(1) + 'ms')
+    });
+
+    test('shell', () => {
+        const start = performance.now(),
+            ordered = shell([...SET]),
+            end = performance.now();
+        expect(ordered).toEqual(native);
+        console.log('shell [int]: ', (end - start).toFixed(1) + 'ms')
     });
     
     test('lodash', () => {
