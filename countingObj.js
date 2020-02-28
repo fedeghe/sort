@@ -1,10 +1,9 @@
 const counting = (arr, fn) => {
     let i = 0,
-        j = 0,
         len = arr.length,
         count = [];
 
-    for (i = 0; i < len; i++) {
+    for (; i < len; i++) {
         let j = fn(arr[i])
         count[j] = typeof count[j] !== 'undefined'
             ? {count: count[j].count + 1, obj: count[j].obj}
