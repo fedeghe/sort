@@ -2,7 +2,7 @@ const counting = (arr, min, max) => {
     let i = min,
         j = 0,
         len = arr.length,
-        count = []; //Array.from({length: max-min}, () => 0);
+        count = [];
     for (i; i <= max; i++) {
         count[i] = 0;
     }
