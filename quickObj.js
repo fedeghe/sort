@@ -1,16 +1,10 @@
-
-function swap(items, leftIndex, rightIndex){
-    var temp = items[leftIndex];
-    items[leftIndex] = items[rightIndex];
-    items[rightIndex] = temp;
-}
+const swap = require('./utils').swap
 function partition(items, fn1, fn2, left, right) {
     // var pivot   = items[Math.floor((right + left) / 2)],
     var pivot = items[(right+left)  >>> 1], //middle element
         i = left, //left pointer
         j = right; //right pointer
     while (i <= j) {
-        
         while (fn1(items[i], pivot))i++;
         while (fn2(items[j], pivot)) j--;
         if (i <= j) {
