@@ -1,6 +1,6 @@
 const swap = require('./utils.js').swap
 
-const gnome = items => {
+const gnome = (items, fn) => {
     let array = [],
         position = 1;
     
@@ -9,7 +9,7 @@ const gnome = items => {
     }
     
     while ( position < items.length ) {
-        if ( array[position] >= array[position - 1] ) {
+        if ( fn(array[position], array[position - 1]) ) {
             position++;
         } else {
             swap(array, position, position - 1);
@@ -23,4 +23,4 @@ const gnome = items => {
 
 
 
-module.exports = a => gnome(a)
+module.exports = (a, fn) => gnome(a, fn)
