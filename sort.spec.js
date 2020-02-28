@@ -2,6 +2,7 @@ const _ = require('lodash'),
     quick = require('./quick'),
     quickObj = require('./quickObj'),
     merge = require('./merge'),
+    bubble = require('./bubble'),
     arrs = require('./benchmark/randomArr')
 
 describe('sort ', () => {
@@ -46,6 +47,20 @@ describe('sort ', () => {
         expect(ordered_obj).toEqual(nativeObj);
         console.log('merge [int]: ', (end - start).toFixed(1)+'ms')
         console.log('merge [obj]: ', (endDef - startDef).toFixed(1)+'ms') 
+    });
+
+    test('bubble', () => {
+        const start = performance.now(),
+            ordered_int = bubble([...SET], (a, b) => a > b),
+            end = performance.now(),
+            startDef = performance.now(),
+            ordered_obj = bubble([...SETobj], (a, b) => a.num > b.num),
+            endDef = performance.now();
+
+        expect(ordered_int).toEqual(native);
+        expect(ordered_obj).toEqual(nativeObj);
+        console.log('bubble [int]: ', (end - start).toFixed(1)+'ms')
+        console.log('bubble [obj]: ', (endDef - startDef).toFixed(1)+'ms') 
     });
 
     test('lodash', () => {

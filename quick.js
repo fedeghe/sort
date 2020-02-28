@@ -1,9 +1,5 @@
+const swap = require('./utils.js').swap
 
-function swap(items, leftIndex, rightIndex){
-    var temp = items[leftIndex];
-    items[leftIndex] = items[rightIndex];
-    items[rightIndex] = temp;
-}
 function partition(items, left, right) {
     // var pivot   = items[Math.floor((right + left) / 2)],
     var pivot = items[(right+left)  >>> 1], //middle element
