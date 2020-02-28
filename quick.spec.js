@@ -47,7 +47,7 @@ describe('sort ', () => {
         console.log('merge [obj]: ', (endDef - startDef).toFixed(1)+'ms') 
     });
 
-    test('_', () => {
+    test('lodash', () => {
         const start = performance.now(),
             _int = _.sortBy([...SET]),
             mid = performance.now(),
@@ -56,7 +56,7 @@ describe('sort ', () => {
 
         expect(_int).toEqual(native);
         expect(_obj).toEqual(nativeObj);
-        console.log('_ [int]: ', (mid - start).toFixed(1)+'ms')
-        console.log('_ [obj]: ', (end - mid).toFixed(1)+'ms')
+        console.log('lodash [int]: ', (mid - start).toFixed(1)+'ms')
+        console.log('lodash [obj]: ', (end - mid).toFixed(1)+'ms')
     });
 });
