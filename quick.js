@@ -1,6 +1,6 @@
 const swap = require('./utils.js').swap
 
-function partition(items, left, right) {
+const partition = (items, left, right) => {
     // var pivot   = items[Math.floor((right + left) / 2)],
     var pivot = items[(right+left)  >>> 1], //middle element
         i = left, //left pointer
@@ -18,7 +18,7 @@ function partition(items, left, right) {
     return i;
 }
 
-function quickSort(items, left, right) {
+const quickSort = (items, left, right) => {
     var index;
     if (items.length > 1) {
         index = partition(items, left, right); //index returned from partition
