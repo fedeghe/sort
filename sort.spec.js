@@ -1,21 +1,22 @@
 const _ = require('lodash'),
-    quick = require('./quick'),
-    quickObj = require('./quickObj'),
-    merge = require('./merge'),
-    bubble = require('./bubble'),
-    insertion = require('./insertion'),
-    selection = require('./selection'),
-    counting = require('./counting'),
-    counting2 = require('./counting2'),
-    countingObj = require('./countingObj'),
-    radix = require('./radix'),
-    heap = require('./heap'),
-    bitonic = require('./bitonic'),
-    gnome = require('./gnome'),
-    shell = require('./shell'),
-    shaker = require('./cocktail_shaker'),
-    comb = require('./comb'),
-    arrs = require('./benchmark/randomArr');
+    quick = require('./strategies/quick'),
+    quickObj = require('./strategies/quickObj'),
+    merge = require('./strategies/merge'),
+    bubble = require('./strategies/bubble'),
+    insertion = require('./strategies/insertion'),
+    selection = require('./strategies/selection'),
+    counting = require('./strategies/counting'),
+    counting2 = require('./strategies/counting2'),
+    countingObj = require('./strategies/countingObj'),
+    radix = require('./strategies/radix'),
+    heap = require('./strategies/heap'),
+    bitonic = require('./strategies/bitonic'),
+    gnome = require('./strategies/gnome'),
+    shell = require('./strategies/shell'),
+    shaker = require('./strategies/cocktail_shaker'),
+    comb = require('./strategies/comb'),
+    arrs = require('./benchmark/randomArr'),
+    len = require('./benchmark/randomArr').len,
     fs = require('fs');
 
 
@@ -54,7 +55,13 @@ const writeStats = (file, data) => {
                 out[k] = res[k]
             })
 
-            fs.writeFileSync(file.replace(/(int|obj)/, `$1.summary`), Object.keys(out).reduce((acc, k) => `${acc}${k}: ${out[k]}\n` , '')); 
+            fs.writeFileSync(
+                file.replace(/([int|obj]\.csv)/, `$1.summary.txt`),
+                Object.keys(out).reduce(
+                    (acc, k) => `${acc}${k}: ${parseFloat(out[k], 10).toFixed(2)}\n` ,
+                    `Mean on ${dataLength} trials (on ${len} elements):\n`
+                )
+            ); 
 
             // console.log(out)
         });
@@ -92,9 +99,9 @@ describe('sort ', () => {
     afterAll(() => {
         const int = [],
             obj = [];
-        let intRes = [],
-            objRes = [],
-            csvInt = [[], []],
+        // let intRes = [],
+        //     objRes = [],
+        let csvInt = [[], []],
             csvObj = [[], []];
         Object.keys(times).forEach(strategy => {
             
@@ -113,24 +120,25 @@ describe('sort ', () => {
             }
         });
 
-        const intPath = './stats.int.csv',
-            objPath = './stats.obj.csv';
+        const intPath = `./stats/${len}_int.csv`,
+            objPath = `./stats/${len}_obj.csv`;
+
         writeStats(intPath, csvInt);
         writeStats(objPath, csvObj);
 
-        intRes = int.sort((a, b) => Object.values(a)[0] > Object.values(b)[0] ? 1 : -1);
-        objRes = obj.sort((a, b) => Object.values(a)[0] > Object.values(b)[0] ? 1 : -1);
+        // intRes = int.sort((a, b) => Object.values(a)[0] > Object.values(b)[0] ? 1 : -1);
+        // objRes = obj.sort((a, b) => Object.values(a)[0] > Object.values(b)[0] ? 1 : -1);
         
-        console.log(intRes.reduce((acc, o) => {
-            let k = Object.keys(o)[0]
-            acc += `\n${k}: ${o[k]}`
-            return acc
-        }, 'Leaderboard (INT):'));
-        console.log(objRes.reduce((acc, o) => {
-            let k = Object.keys(o)[0];
-            acc += `\n${k}: ${o[k]}`;
-            return acc;
-        }, 'Leaderboard (OBJ):'))
+        // console.log(intRes.reduce((acc, o) => {
+        //     let k = Object.keys(o)[0]
+        //     acc += `\n${k}: ${o[k]}`
+        //     return acc
+        // }, 'Leaderboard (INT):'));
+        // console.log(objRes.reduce((acc, o) => {
+        //     let k = Object.keys(o)[0];
+        //     acc += `\n${k}: ${o[k]}`;
+        //     return acc;
+        // }, 'Leaderboard (OBJ):'))
         
     })
 
