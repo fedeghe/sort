@@ -1,4 +1,4 @@
-const swap = require('./utils.js').swap;
+const swap = require('./utils').swap;
 const comb = arr => {
     let interval = Math.floor(arr.length / 1.3),
         len = arr.length,

@@ -1,4 +1,4 @@
-const swap = require('./utils.js').swap
+const swap = require('./utils').swap
 
 const partition = (items, left, right) => {
     // var pivot   = items[Math.floor((right + left) / 2)],

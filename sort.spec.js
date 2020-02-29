@@ -9,6 +9,7 @@ const _ = require('lodash'),
     counting2 = require('./counting2'),
     countingObj = require('./countingObj'),
     radix = require('./radix'),
+    heap = require('./heap'),
     bitonic = require('./bitonic'),
     gnome = require('./gnome'),
     shell = require('./shell'),
@@ -19,17 +20,60 @@ const _ = require('lodash'),
 
 
 const writeStats = (file, data) => {
+    const then = () => {
+        fs.readFile(file, 'utf8', function(err, contents) {
+            const lines = contents.split(/\n/)
+            const titles = lines[0].split(',');
+            let res = titles.reduce((acc, el) => {
+                acc[el] = 0;
+                return acc;
+            }, {})
+            const data = lines.slice(1);
+            const dataLength = data.length;
+
+            res = data.reduce((r, line) => {
+                if (line.length === 0) return r;
+                const values = line.split(',');
+                values.forEach((v, i) => {
+                    r[titles[i]] += parseFloat(v);
+                })
+                return r;
+            }, res);
+
+            // get mean
+            res = Object.keys(res).reduce((acc, k) => {
+                acc[k] = res[k] / dataLength;
+                return acc;
+            }, {});
+
+            const keys = Object.keys(res);
+            const out = {}
+            keys.sort((a,b) => 
+                res[a] > res[b] ? 1: -1
+            ).forEach(k => {
+                out[k] = res[k]
+            })
+
+            fs.writeFileSync(file.replace(/(int|obj)/, `$1.summary`), Object.keys(out).reduce((acc, k) => `${acc}${k}: ${out[k]}\n` , '')); 
+
+            // console.log(out)
+        });
+    }
     try {
         if (!fs.existsSync(file)) {
             fs.writeFile(file, data.reduce((acc, el) => `${acc}${el.join(',')}\n` , ''), function(err) {
+                then();
                 if(err) {
                     return console.log(err);
                 }
             }); 
         } else {
             fs.appendFile(file, `${data[1].join(',')}\n`, function (err) {
-                if (err) throw err;
-              });
+                then();
+                if (err) {
+                    return console.log(err);
+                }
+            });
         }
     } catch(err) {
         console.error(err)
@@ -205,6 +249,17 @@ describe('sort ', () => {
         };
     });
 
+    test('heap', () => {
+        const start = performance.now(),
+            set = [...SET],
+            ordered = heap(set),
+            end = performance.now();
+        expect(ordered).toEqual(native);
+        times.heap = {
+            int: end - start
+        };
+    });
+
     test('countingObj', () => {
         const start = performance.now(),
             set = [...SETobj],
@@ -226,15 +281,15 @@ describe('sort ', () => {
         };
     });
 
-    test('bitonic', () => {
-        const start = performance.now(),
-            ordered = bitonic([...SET2pow]),
-            end = performance.now();
-        expect(ordered).toEqual(native2pow);
-        times.bitonic = {
-            int: end - start
-        };
-    });
+    // test('bitonic', () => {
+    //     const start = performance.now(),
+    //         ordered = bitonic([...SET2pow]),
+    //         end = performance.now();
+    //     expect(ordered).toEqual(native2pow);
+    //     times.bitonic = {
+    //         int: end - start
+    //     };
+    // });
 
 
     test('gnome', () => {

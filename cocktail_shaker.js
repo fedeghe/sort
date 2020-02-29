@@ -1,4 +1,4 @@
-const swap = require('./utils.js').swap;
+const swap = require('./utils').swap;
 const shaker = (arr, fn) => {
     let max = arr.length - 1,
         min = 0;

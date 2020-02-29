@@ -1,4 +1,4 @@
-const swap = require('./utils.js').swap
+const swap = require('./utils').swap
 
 const gnome = (items, fn) => {
     let array = items ? [...items] : [],
