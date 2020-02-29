@@ -10,5 +10,6 @@ const len = 1e3,
 module.exports = {
     SET,
     SETobj,
-    SET2pow
+    SET2pow,
+    len
 };
