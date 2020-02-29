@@ -98,47 +98,47 @@ Content: random `{num: int}` with `int` ∈ **[0, 1K]**
 ---
 
 Elements: **10k**  
-Average on **~30** tests  
+Average on **~100** tests  
 Content: random integers ∈ **[0, 10k]**  
 <details>
     <summary>Results:</summary>  
 
 | Strategy | time in ms |
 |----------|------------:|
-| counting | 2.30 |
-| shell | 3.55 |
-| quick | 4.60 |
-| merge | 9.57 |
-| _native_ | 11.81 |
-| heap | 13.34 |
-| radix | 19.06 |
-| lodash | 25.87 |
-| insertion | 33.25 |
-| selection | 80.64 |
-| shaker | 99.50 |
-| gnome | 141.47 |
-| bubble | 309.06 |
+| counting | 2.41 |
+| shell | 3.60 |
+| quick | 5.00 |
+| merge | 9.69 |
+| _native_ | 11.53 |
+| heap | 13.67 |
+| radix | 19.81 |
+| lodash | 26.60 |
+| insertion | 34.44 |
+| selection | 85.56 |
+| shaker |105.32 |
+| gnome | 147.57 |
+| bubble | 308.16 |
 </details>
 
 ---
 Elements: **10K**  
-Average on **~30** tests  
+Average on **~100** tests  
 Content: random `{num: int}` with `int` ∈ **[0, 10K]**  
 <details>
     <summary>Results:</summary>  
     
 | Strategy | time in ms |
 |----------|------------:|
-| counting | 4.82 |
-| quick | 6.06 |
-| _native_ | 9.46 |
-| merge | 12.38 |
-| lodash | 17.33 |
-| insertion | 256.49 |
-| shaker | 405.66 |
-| selection | 406.49 |
-| gnome | 535.11 |
-| bubble | 1102.52 |
+| counting | 5.06 |
+| quick | 8.23 |
+| _native_ | 9.59 |
+| merge | 12.43 |
+| lodash | 17.68 |
+| insertion | 258.38 |
+| shaker | 424.16 |
+| selection | 419.54 |
+| gnome | 554.50 |
+| bubble | 1140.90 |
 </details>
 
 --- 
