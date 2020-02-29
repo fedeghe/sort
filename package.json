@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-        "test": "jest"
+        "test": "jest",
+        "jestwatch": "jest --watch"
     },
     "license": "MIT",
     "repository": "https://github.com/fedeghe/sort.git",
