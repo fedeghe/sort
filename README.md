@@ -3,6 +3,8 @@ Exploring and challenging most sorting algorithms in the best language ever.
 
 Here I will list the results of some test ran on different benchmarks. What matters here is the size of the input array, and its content.
 
+The strategy named _native_ in the tables below is the `Array.prototype.sort` function which turns surprisingly to **not** be the fastest solution.
+ 
 Elements: **100**  
 Average on **~100** tests  
 Content: random integers ∈ **[0, 100]**  
@@ -13,7 +15,7 @@ Content: random integers ∈ **[0, 100]**
 |----------|------------:|
 | counting | 0.04 |
 | quick | 0.08 |
-| native | 0.09 |
+| _native_ | 0.09 |
 | shell | 0.09 |
 | radix | 0.10 |
 | merge | 0.15 |
@@ -36,7 +38,7 @@ Content: random `{num: int}` with `int` ∈ **[0, 100]**
 | Strategy | time in ms |
 |----------|------------:|
 | counting | 0.06 |
-| native | 0.09 |
+| _native_ | 0.09 |
 | quick | 0.11 |
 | merge | 0.17 |
 | insertion | 0.21 |
@@ -60,7 +62,7 @@ Content: random integers ∈ **[0, 1K]**
 | counting | 0.26 |
 | quick | 1.02 |
 | radix | 1.09 |
-| native | 1.34 |
+| _native_ | 1.34 |
 | shell | 1.78 |
 | insertion | 2.23 |
 | heap | 2.67 |
@@ -82,7 +84,7 @@ Content: random `{num: int}` with `int` ∈ **[0, 1K]**
 | Strategy | time in ms |
 |----------|------------:|
 | counting | 0.36 |
-| native | 0.36 |
+| _native_ | 0.36 |
 | quick | 1.87 |
 | merge | 3.38 |
 | lodash | 4.35 |
@@ -107,7 +109,7 @@ Content: random integers ∈ **[0, 10k]**
 | shell | 3.55 |
 | quick | 4.60 |
 | merge | 9.57 |
-| native | 11.81 |
+| _native_ | 11.81 |
 | heap | 13.34 |
 | radix | 19.06 |
 | lodash | 25.87 |
@@ -129,7 +131,7 @@ Content: random `{num: int}` with `int` ∈ **[0, 10K]**
 |----------|------------:|
 | counting | 4.82 |
 | quick | 6.06 |
-| native | 9.46 |
+| _native_ | 9.46 |
 | merge | 12.38 |
 | lodash | 17.33 |
 | insertion | 256.49 |
