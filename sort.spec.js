@@ -172,7 +172,8 @@ describe('sort ', () => {
             obj: end - mid
         };
     });
-
+    
+    len < 1E5 &&
     test('merge', () => {
         const start = performance.now(),
             ordered_int = merge([...SET], (a, b) => a < b),
