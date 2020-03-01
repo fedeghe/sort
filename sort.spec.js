@@ -61,8 +61,17 @@ const writeStats = (file, data) => {
                     (acc, k) => `${acc}${k}: ${parseFloat(out[k], 10).toFixed(2)}\n` ,
                     `Mean on ${dataLength} trials (on ${len} elements):\n`
                 )
+            );
+            fs.writeFileSync(
+                file.replace(/([int|obj])\.csv/, `$1.json`),
+                JSON.stringify(Object.keys(out).reduce(
+                    (acc, k) => {
+                        acc[k] = parseFloat(out[k].toFixed(2), 10);
+                        return acc;
+                    },
+                    {}
+                ))
             ); 
-
             // console.log(out)
         });
     }
