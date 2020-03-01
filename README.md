@@ -12,7 +12,7 @@ Content: random integers ∈ **[0, 100]**
 <details>
     <summary>Results:</summary>  
 
-<span style=“color:green”>counting: 0.04<\style>  
+<span style=“color:green”>counting: 0.04</span>
 quick: 0.08  
 _native_: 0.09  
 shell: 0.09  
