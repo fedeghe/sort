@@ -1,5 +1,4 @@
-Mean on 7 trials (on 1000000 elements):
-quick: 311.84
-countingObj: 324.74
-native: 765.87
-merge: 1009.58
+Mean on 71 trials (on 1000000 elements):
+quick: 302.23
+countingObj: 333.58
+native: 917.00
