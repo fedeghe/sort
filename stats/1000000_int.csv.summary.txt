@@ -1,0 +1,6 @@
+Mean on 7 trials (on 1000000 elements):
+counting: 88.22
+counting2: 162.87
+quick: 205.67
+native: 508.70
+merge: 709.23

@@ -188,6 +188,7 @@ describe('sort ', () => {
         };
     });
 
+    len < 1E5 &&
     test('bubble', () => {
         const start = performance.now(),
             ordered_int = bubble([...SET], (a, b) => a > b),
@@ -203,6 +204,7 @@ describe('sort ', () => {
         };
     });
 
+    len < 1E5 &&
     test('insertion', () => {
         const start = performance.now(),
             ordered_int = insertion([...SET], (a, b) => a > b),
@@ -218,6 +220,7 @@ describe('sort ', () => {
         };
     });
 
+    len < 1E5 &&
     test('selection', () => {
         const start = performance.now(),
             ordered_int = selection([...SET], (a, b) => a > b),
@@ -257,6 +260,7 @@ describe('sort ', () => {
         };
     });
 
+    len < 1E5 &&
     test('heap', () => {
         const start = performance.now(),
             set = [...SET],
@@ -279,6 +283,7 @@ describe('sort ', () => {
         };
     });
 
+    len < 1E5 &&
     test('radix', () => {
         const start = performance.now(),
             ordered = radix([...SET]),
@@ -300,6 +305,7 @@ describe('sort ', () => {
     // });
 
 
+    len < 1E5 &&
     test('gnome', () => {
         const start = performance.now(),
             ordered_int = gnome([...SET], (a, b) => a >= b),
@@ -315,6 +321,7 @@ describe('sort ', () => {
         };
     });
 
+    len < 1E5 &&
     test('shell', () => {
         const start = performance.now(),
             ordered = shell([...SET]),
@@ -325,6 +332,7 @@ describe('sort ', () => {
         };
     });
 
+    len < 1E5 &&
     test('shaker', () => {
         const start = performance.now(),
             ordered_int = shaker([...SET], (a, b) => a > b),
@@ -340,6 +348,7 @@ describe('sort ', () => {
         };
     });
     
+    len < 1E5 &&
     test('lodash', () => {
         const start = performance.now(),
             _int = _.sortBy([...SET]),
