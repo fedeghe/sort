@@ -10,22 +10,19 @@ Average on **~100** tests
 Content: random integers ∈ **[0, 100]**  
 <details>
     <summary>Results:</summary>  
-
-| Strategy | time in ms |
-|----------|------------:|
-| counting | 0.04 |
-| quick | 0.08 |
-| _native_ | 0.09 |
-| shell | 0.09 |
-| radix | 0.10 |
-| merge | 0.15 |
-| insertion | 0.18 |
-| heap | 0.21 |
-| selection | 0.30 |
-| shaker | 0.33 |
-| gnome | 0.47 |
-| lodash | 0.59 |
-| bubble | 0.98 |
+counting: 0.04  
+quick: 0.08  
+_native_: 0.09  
+shell: 0.09  
+radix: 0.10  
+merge: 0.15  
+insertion: 0.18  
+heap: 0.21  
+selection: 0.30  
+shaker: 0.33  
+gnom: 0.47  
+lodash: 0.59  
+bubble: 0.98  
 </details>
 
 ---
@@ -34,19 +31,16 @@ Average on **~100** tests
 Content: random `{num: int}` with `int` ∈ **[0, 100]**  
 <details>
     <summary>Results:</summary>  
-    
-| Strategy | time in ms |
-|----------|------------:|
-| counting | 0.06 |
-| _native_ | 0.09 |
-| quick | 0.11 |
-| merge | 0.17 |
-| insertion | 0.21 |
-| selection | 0.39 |
-| lodash | 0.40 |
-| shaker | 0.43 |
-| gnome | 0.63 |
-| bubble | 1.75 |
+counting: 0.06  
+_native_: 0.09  
+quic: 0.11  
+merge: 0.17  
+insertion: 0.21  
+selection: 0.39  
+lodash: 0.40  
+shaker: 0.43  
+gnome: 0.63  
+bubble: 1.75  
 </details>
 
 ---
@@ -56,22 +50,19 @@ Average on **~100** tests
 Content: random integers ∈ **[0, 1K]**  
 <details>
     <summary>Results:</summary>  
-
-| Strategy | time in ms |
-|----------|------------:|
-| counting | 0.26 |
-| quick | 1.02 |
-| radix | 1.09 |
-| _native_ | 1.34 |
-| shell | 1.78 |
-| insertion | 2.23 |
-| heap | 2.67 |
-| merge | 2.74 |
-| selection | 2.80 |
-| gnome | 3.24 |
-| shaker | 3.92 |
-| bubble | 5.37 |
-| lodash | 5.46 |
+counting: 0.26  
+quick: 1.02  
+radix: 1.09  
+_native_: 1.34  
+shell: 1.78  
+insertion: 2.23  
+heap: 2.67  
+merge: 2.74  
+selection: 2.80  
+gnome: 3.24  
+shaker: 3.92  
+bubble: 5.37  
+lodash: 5.46  
 </details>
 
 ---
@@ -80,19 +71,16 @@ Average on **~100** tests
 Content: random `{num: int}` with `int` ∈ **[0, 1K]**  
 <details>
     <summary>Results:</summary>  
-    
-| Strategy | time in ms |
-|----------|------------:|
-| counting | 0.36 |
-| _native_ | 0.36 |
-| quick | 1.87 |
-| merge | 3.38 |
-| lodash | 4.35 |
-| insertion | 6.00 |
-| selection | 7.48 |
-| shaker | 8.85 |
-| gnome | 9.86 |
-| bubble | 14.10 |
+counting: 0.36  
+_native_: 0.36  
+quick: 1.87  
+merge: 3.38  
+lodash: 4.35  
+insertion: 6.00  
+selection: 7.48  
+shaker: 8.85  
+gnome: 9.86  
+bubble: 14.10  
 </details>
 
 ---
