@@ -6,6 +6,8 @@ Here I will list the results of some test ran on different benchmarks. What matt
 The strategy named _native_ in the tables below is the `Array.prototype.sort` function which turns surprisingly to **not** be the fastest solution.
 For curiosity I also added _lodash_ using the _\_.sort\_by_ function.  
 
+For a small graphical comparation, run `yarn extract && yarn serve` and then navigate to `http://127.0.0.1:3001` 
+
 Elements: **100**  
 Average on **~100** tests  
 Content: random integers ∈ **[0, 100]**  
