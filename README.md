@@ -32,6 +32,7 @@ Average on **~100** tests
 Content: random `{num: int}` with `int` ∈ **[0, 100]**  
 <details>
     <summary>Results:</summary>  
+
 counting: 0.06  
 _native_: 0.09  
 quic: 0.11  
@@ -51,6 +52,7 @@ Average on **~100** tests
 Content: random integers ∈ **[0, 1K]**  
 <details>
     <summary>Results:</summary>  
+
 counting: 0.26  
 quick: 1.02  
 radix: 1.09  
@@ -72,6 +74,7 @@ Average on **~100** tests
 Content: random `{num: int}` with `int` ∈ **[0, 1K]**  
 <details>
     <summary>Results:</summary>  
+
 counting: 0.36  
 _native_: 0.36  
 quick: 1.87  
