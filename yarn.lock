@@ -982,6 +982,13 @@ ecc-jsbn@~0.1.1:
     jsbn "~0.1.0"
     safer-buffer "^2.1.0"
 
+echarts@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/echarts/-/echarts-4.6.0.tgz#b5a47a1046cec93ceeef954f9ee54751340558ec"
+  integrity sha512-xKkcr6v9UVOSF+PMuj7Ngt3bnzLwN1sSXWCvpvX+jYb3mePYsZnABq7wGkPac/m0nV653uGHXoHK8DCKCprdNg==
+  dependencies:
+    zrender "4.2.0"
+
 emoji-regex@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/emoji-regex/-/emoji-regex-8.0.0.tgz#e818fd69ce5ccfcb404594f842963bf53164cc37"
@@ -2174,6 +2181,18 @@ makeerror@1.0.x:
   integrity sha1-4BpckQnyr3lmDk6LlYd5AYT1qWw=
   dependencies:
     tmpl "1.0.x"
+
+malta-dev-srv@^1.1.6:
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/malta-dev-srv/-/malta-dev-srv-1.1.6.tgz#91722f3db065b5cf7ec12fd48f354088208c45cc"
+  integrity sha512-ct/yycarWT+QnXy3DQG6MOQ6j7lIaLwCpUoN4y7cZ0D3vXuUksveqra6MSbu59OQyCpn5/eh7CctYjNpeIJy7w==
+  dependencies:
+    malta "^4.0.4"
+
+malta@^4.0.4, malta@^4.0.7:
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/malta/-/malta-4.0.7.tgz#4413fa6b00a5dd45d86ed8af0441b291d414f168"
+  integrity sha512-DVvnbnJ9ltwCaEcihNJNcN+Y+nt6uz+oCb4Rim4wfuBsBAbKp7DLv2Okf7w9pisoDmo4KZJHF3tXvjqguoS52A==
 
 map-cache@^0.2.2:
   version "0.2.2"
@@ -3375,3 +3394,8 @@ yargs@^15.0.0:
     which-module "^2.0.0"
     y18n "^4.0.0"
     yargs-parser "^16.1.0"
+
+zrender@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/zrender/-/zrender-4.2.0.tgz#d001302e155f28de1f9fc7fcd5c254bad28471cf"
+  integrity sha512-YJ9hxt5uFincYYU3KK31+Ce+B6PJmYYK0Q9fQ6jOUAoC/VHbe4kCKAPkxKeT7jGTxrK5wYu18R0TLGqj2zbEOA==
