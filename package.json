@@ -4,13 +4,23 @@
     "main": "index.js",
     "scripts": {
         "test": "jest",
-        "jestwatch": "jest --watch"
+        "jestwatch": "jest --watch",
+        "serve": "malta stats/serve.json",
+        "extract": "node stats/extract.js"
     },
     "license": "MIT",
     "repository": "https://github.com/fedeghe/sort.git",
     "author": "fedeghe <fedeghe@gmail.com>",
     "dependencies": {
+        "echarts": "^4.6.0",
         "jest": "^25.1.0",
-        "lodash": "^4.17.15"
+        "lodash": "^4.17.15",
+        "malta": "^4.0.7",
+        "malta-dev-srv": "^1.1.6"
+    },
+    "jest": {
+        "modulePathIgnorePatterns": [
+            "stats"
+        ]
     }
 }
