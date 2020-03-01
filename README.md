@@ -10,6 +10,7 @@ Average on **~100** tests
 Content: random integers ∈ **[0, 100]**  
 <details>
     <summary>Results:</summary>  
+
 counting: 0.04  
 quick: 0.08  
 _native_: 0.09  
