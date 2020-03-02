@@ -1,1 +1,1 @@
-{"native":0.09,"quick":0.16,"insertion":0.16,"merge":0.16,"bucketfast":0.19,"countingObj":0.22,"selection":0.24,"shaker":0.27,"lodash":0.41,"gnome":0.47,"bubble":1.77}
+{"countingObj":0.08,"quick":0.13,"bucket":0.18,"native":0.19,"merge":0.19,"insertion":0.24,"selection":0.41,"shaker":0.5,"lodash":0.51,"gnome":0.72,"bubble":2.16}
