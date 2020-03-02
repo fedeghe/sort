@@ -5,7 +5,7 @@
     "scripts": {
         "test": "jest",
         "jestwatch": "jest --watch",
-        "serve": "malta stats/serve.json",
+        "serve": "malta serve.json",
         "extract": "node stats/extract.js"
     },
     "license": "MIT",
