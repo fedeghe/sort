@@ -14,6 +14,7 @@ const _ = require('lodash'),
     gnome = require('./strategies/gnome'),
     shell = require('./strategies/shell'),
     shaker = require('./strategies/cocktail_shaker'),
+    bucketfast = require('./strategies/bucketfast'),
     comb = require('./strategies/comb'),
     arrs = require('./benchmark/randomArr'),
     len = require('./benchmark/randomArr').len,
@@ -177,6 +178,21 @@ describe('sort ', () => {
         expect(quick_int).toEqual(native);
         expect(quick_obj).toEqual(nativeObj);
         times.quick = {
+            int: mid - start,
+            obj: end - mid
+        };
+    });
+
+    test('bucketfast', () => {
+        const start = performance.now(),
+            bucketfast_int = bucketfast([...SET]),
+            mid = performance.now(),
+            bucketfast_obj = bucketfast([...SETobj], a => a.num),
+            end = performance.now();
+
+        expect(bucketfast_int).toEqual(native);
+        expect(bucketfast_obj).toEqual(nativeObj);
+        times.bucketfast = {
             int: mid - start,
             obj: end - mid
         };
