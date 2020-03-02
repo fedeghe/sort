@@ -1,8 +1,14 @@
 const fs = require('fs');
+
+const createSerie = name => ({
+    name,
+    type: 'bar',
+    data: [0, 0, 0, 0, 0, 0]
+})
 const baseName = '%size%_%type%.json',
     outFileName = 'glob_%type%.json',
     types = ['int', 'obj'],
-    exps = [2, 3, 4, 5],
+    exps = [2, 3, 4, 5, 6],
     data = {
         title: {
             text: 'Comparison',
@@ -21,39 +27,24 @@ const baseName = '%size%_%type%.json',
         },
         yAxis: {
             type: 'category',
-            data: [100, '1K', '10K', '100K']
+            data: [100, '1K', '10K', '100K' , '1M']
         },
         series: [
-            {
-                name: 'counting',
-                type: 'bar',
-                data: [0, 0, 0, 0, 0]
-            },
-            {
-                name: 'quick',
-                type: 'bar',
-                data: [0, 0, 0, 0, 0]
-            },
-            {
-                name: 'native',
-                type: 'bar',
-                data: [0, 0, 0, 0, 0]
-            },
-            {
-                name: 'shell',
-                type: 'bar',
-                data: [0, 0, 0, 0, 0]
-            },
-            {
-                name: 'radix',
-                type: 'bar',
-                data: [0, 0, 0, 0, 0]
-            },
-            {
-                name: 'merge',
-                type: 'bar',
-                data: [0, 0, 0, 0, 0]
-            }
+            createSerie('counting'),
+            createSerie('quick'),
+            createSerie('native'),
+            createSerie('shell'),
+            createSerie('radix'),
+            createSerie('merge'),
+            createSerie('bucket'),
+            createSerie('bubble'),
+            createSerie('insertion'),
+            createSerie('selection'),
+            createSerie('counting2'),
+            createSerie('heap'),
+            createSerie('gnome'),
+            createSerie('shaker'),
+            createSerie('lodash')
         ]
     };
     
