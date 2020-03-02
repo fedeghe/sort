@@ -1,10 +1,10 @@
-const fs = require('fs');
-const len = require('./../benchmark/randomArr').len;
-const swap = (items, leftIndex, rightIndex) => {
-    let temp = items[leftIndex];
-    items[leftIndex] = items[rightIndex];
-    items[rightIndex] = temp;
-}
+const fs = require('fs'),
+    len = require('./../benchmark/randomArr').len,
+    swap = (items, leftIndex, rightIndex) => {
+        let temp = items[leftIndex];
+        items[leftIndex] = items[rightIndex];
+        items[rightIndex] = temp;
+    };
 
 const writeStats = (file, data) => {
     const then = () => {
