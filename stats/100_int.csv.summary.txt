@@ -1,15 +1,16 @@
-Mean on 130 trials (on 100 elements):
-counting2: 0.04
-counting: 0.05
-quick: 0.08
-shell: 0.09
-native: 0.09
-radix: 0.11
-merge: 0.16
-insertion: 0.18
-heap: 0.21
-selection: 0.30
-shaker: 0.34
-gnome: 0.48
-lodash: 0.60
-bubble: 0.97
+Mean on 4 trials (on undefined elements):
+counting2: 0.10
+counting: 0.11
+native: 0.14
+quick: 0.16
+shell: 0.17
+radix: 0.19
+insertion: 0.19
+merge: 0.22
+selection: 0.25
+bucketfast: 0.29
+shaker: 0.31
+heap: 0.37
+gnome: 0.50
+bubble: 0.69
+lodash: 0.84

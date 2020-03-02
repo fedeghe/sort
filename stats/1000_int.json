@@ -1,1 +1,1 @@
-{"counting2":0.25,"counting":0.3,"quick":1.01,"radix":1.13,"native":1.34,"shell":1.81,"insertion":2.27,"heap":2.65,"merge":2.8,"selection":2.82,"gnome":3.23,"shaker":3.9,"lodash":5.52,"bubble":6.77,"undefined":null}
+{"counting2":0.19,"counting":0.24,"quick":0.51,"radix":0.85,"native":1.05,"shell":1.24,"merge":1.41,"insertion":1.41,"heap":1.62,"selection":1.91,"gnome":2.25,"bucketfast":2.46,"shaker":2.57,"bubble":4.26,"lodash":4.28}

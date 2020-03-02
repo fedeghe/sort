@@ -1,5 +1,6 @@
-Mean on 72 trials (on 1000000 elements):
-counting: 90.47
-counting2: 194.24
-quick: 213.84
-native: 592.54
+Mean on 2 trials (on undefined elements):
+counting: 72.28
+quick: 73.39
+counting2: 84.27
+bucketfast: 113.15
+native: 281.46

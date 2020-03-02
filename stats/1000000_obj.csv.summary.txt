@@ -1,4 +1,5 @@
-Mean on 72 trials (on 1000000 elements):
-quick: 301.93
-countingObj: 334.51
-native: 917.11
+Mean on 2 trials (on undefined elements):
+quick: 139.42
+countingObj: 193.72
+bucketfast: 402.24
+native: 461.38

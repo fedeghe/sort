@@ -1,12 +1,12 @@
-Mean on 254 trials (on undefined elements):
-countingObj: 0.44
-native: 1.34
-quick: 1.85
-merge: 3.20
-lodash: 4.36
-insertion: 6.05
-shaker: 8.86
-gnome: 9.78
-bubble: 14.02
-undefined: NaN
-selection: 7.50
+Mean on 3 trials (on undefined elements):
+countingObj: 0.30
+native: 0.85
+quick: 0.92
+merge: 1.37
+lodash: 2.35
+bucketfast: 3.46
+insertion: 3.84
+selection: 5.70
+shaker: 5.82
+gnome: 6.99
+bubble: 9.23
