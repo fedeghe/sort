@@ -1,5 +1,5 @@
 const fs = require('fs');
-const len = require('./utils').len;
+const len = require('./../benchmark/randomArr').len;
 const swap = (items, leftIndex, rightIndex) => {
     let temp = items[leftIndex];
     items[leftIndex] = items[rightIndex];
