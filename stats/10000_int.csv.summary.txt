@@ -1,16 +1,16 @@
-Mean on 107 trials (on 10000 elements):
-counting2: 2.54
-counting: 3.31
-shell: 3.74
-quick: 5.01
-bucket: 7.70
-merge: 10.04
-native: 11.72
-heap: 14.76
-radix: 21.14
-lodash: 24.98
-insertion: 37.36
-selection: 85.14
-shaker: 107.38
-gnome: 157.63
-bubble: 322.54
+Mean on 202 trials (on 10000 elements):
+counting2: 2.52
+counting: 3.25
+shell: 3.71
+quick: 4.92
+bucket: 7.57
+merge: 9.96
+native: 11.79
+heap: 14.56
+radix: 20.33
+lodash: 24.48
+insertion: 36.31
+selection: 84.29
+shaker: 105.61
+gnome: 153.79
+bubble: 318.72
