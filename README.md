@@ -3,7 +3,7 @@ Exploring and challenging most sorting algorithms in the best language ever.
 
 Here I will list the results of some test ran on different benchmarks. What matters here is the size of the input array, and its content.
 
-The strategy named _native_ in the tables below is the `Array.prototype.sort` function which turns surprisingly to **not** be the fastest solution.
+The strategy named _native_ in the tables below is the `Array.prototype.sort` function which turns surprisingly to **not** be the fastest solution (at least using the random generated array).
 For curiosity I also added _lodash_ using the _\_.sort\_by_ function.  
 
 For a small graphical comparation, run `yarn extract && yarn serve` and then navigate to `http://127.0.0.1:3001` 
