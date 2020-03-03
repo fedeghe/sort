@@ -1,5 +1,0 @@
-Mean on 21 trials (on 1000000 elements):
-counting: 100.62
-quick: 219.87
-counting2: 231.99
-native: 604.33

@@ -1,4 +1,0 @@
-Mean on 21 trials (on 1000000 elements):
-quick: 296.88
-countingObj: 340.80
-native: 883.61
