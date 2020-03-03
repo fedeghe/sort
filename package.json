@@ -13,6 +13,7 @@
     "author": "fedeghe <fedeghe@gmail.com>",
     "dependencies": {
         "echarts": "^4.6.0",
+        "fast-sort": "^2.1.1",
         "jest": "^25.1.0",
         "lodash": "^4.17.15",
         "malta": "^4.0.7",

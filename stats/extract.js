@@ -2,6 +2,8 @@ const fs = require('fs');
 
 const exps = [2, 3, 4]
 
+const nodev = process.versions.node;
+
 const toLabel = exp => {
         const val = 10 ** exp;
         if (val >= 1e6) return `${val / 1e6}M`;
@@ -13,7 +15,7 @@ const toLabel = exp => {
         type: 'bar',
         data: exps.map(() => 0)
     }),
-    baseName = 'stats/%size%_%type%.json',
+    baseName = `stats/${nodev}_%size%_%type%.json`,
     outFileName = 'glob_%type%.json',
     types = ['int', 'obj'],
     data = {

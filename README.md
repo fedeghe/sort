@@ -8,6 +8,8 @@ For curiosity I also added _lodash_ using the _\_.sort\_by_ function.
 
 For a small graphical comparation, run `yarn extract && yarn serve` and then navigate to `http://127.0.0.1:3001` 
 
+On node v10.14.1
+
 Elements: **100**  
 Average on **~300** tests  
 Content: random integers ∈ **[0, 100]**  

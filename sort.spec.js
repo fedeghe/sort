@@ -7,18 +7,21 @@ const _ = require('lodash'),
     selection = require('./strategies/selection'),
     counting = require('./strategies/counting'),
     counting2 = require('./strategies/counting2'),
+    counting3 = require('./strategies/counting3'),
     countingObj = require('./strategies/countingObj'),
     radix = require('./strategies/radix'),
     heap = require('./strategies/heap'),
     bitonic = require('./strategies/bitonic'),
     gnome = require('./strategies/gnome'),
+    fastsort = require('./strategies/fastsort'),
     shell = require('./strategies/shell'),
     shaker = require('./strategies/cocktail_shaker'),
     bucket = require('./strategies/bucket'),
     comb = require('./strategies/comb'),
     arrs = require('./benchmark/randomArr'),
     len = require('./benchmark/randomArr').len,
-    writeStats = require('./strategies/utils').writeStats;
+    writeStats = require('./strategies/utils').writeStats,
+    nodev = process.versions.node;
 
 
 
@@ -55,8 +58,8 @@ describe('sort ', () => {
             }
         });
 
-        const intPath = `./stats/${len}_int.csv`,
-            objPath = `./stats/${len}_obj.csv`;
+        const intPath = `./stats/${nodev}_${len}_int.csv`,
+            objPath = `./stats/${nodev}_${len}_obj.csv`;
 
         writeStats(intPath, csvInt);
         writeStats(objPath, csvObj);
@@ -188,7 +191,6 @@ describe('sort ', () => {
         };
     });
 
-
     test('counting', () => {
         const start = performance.now(),
             set = [...SET],
@@ -211,19 +213,30 @@ describe('sort ', () => {
             int: end - start
         };
     });
-
-    len < 1E5 &&
-    test('heap', () => {
+    test('counting3', () => {
         const start = performance.now(),
             set = [...SET],
-            ordered = heap(set),
+            ordered = counting3(set),
             end = performance.now();
         expect(ordered).toEqual(native);
-        times.heap = {
+        times.counting3 = {
             int: end - start
         };
     });
+    test('fastsort', () => {
+        const start = performance.now(),
+            ordered_int = fastsort([...SET]).asc([a => a]),
+            mid = performance.now(),
+            ordered_obj = fastsort([...SETobj]).asc([a => a.num]),
+            end = performance.now();
 
+        expect(ordered_int).toEqual(native);
+        expect(ordered_obj).toEqual(nativeObj);
+        times.fastsort = {
+            int: mid - start,
+            obj: end - mid
+        };
+    });
     test('countingObj', () => {
         const start = performance.now(),
             set = [...SETobj],
@@ -235,17 +248,83 @@ describe('sort ', () => {
         };
     });
 
-    len < 1E5 &&
-    test('radix', () => {
-        const start = performance.now(),
-            ordered = radix([...SET]),
-            end = performance.now();
-        expect(ordered).toEqual(native);
-        times.radix = {
-            int: end - start
-        };
-    });
+    if (len < 1E5) {
+        test('heap', () => {
+            const start = performance.now(),
+                set = [...SET],
+                ordered = heap(set),
+                end = performance.now();
+            expect(ordered).toEqual(native);
+            times.heap = {
+                int: end - start
+            };
+        });
 
+        test('radix', () => {
+            const start = performance.now(),
+                ordered = radix([...SET]),
+                end = performance.now();
+            expect(ordered).toEqual(native);
+            times.radix = {
+                int: end - start
+            };
+        });
+
+        test('gnome', () => {
+            const start = performance.now(),
+                ordered_int = gnome([...SET], (a, b) => a >= b),
+                mid = performance.now(),
+                ordered_obj = gnome([...SETobj], (a, b) => a.num >= b.num),
+                end = performance.now();
+
+            expect(ordered_int).toEqual(native);
+            expect(ordered_obj).toEqual(nativeObj);
+            times.gnome = {
+                int: mid - start,
+                obj: end - mid
+            };
+        });
+
+        test('shell', () => {
+            const start = performance.now(),
+                ordered = shell([...SET]),
+                end = performance.now();
+            expect(ordered).toEqual(native);
+            times.shell = {
+                int: end - start
+            };
+        });
+
+        test('shaker', () => {
+            const start = performance.now(),
+                ordered_int = shaker([...SET], (a, b) => a > b),
+                mid = performance.now(),
+                ordered_obj = shaker([...SETobj], (a, b) => a.num > b.num),
+                end = performance.now();
+
+            expect(ordered_int).toEqual(native);
+            expect(ordered_obj).toEqual(nativeObj);
+            times.shaker = {
+                int: mid - start,
+                obj: end - mid
+            };
+        });
+        
+        test('lodash', () => {
+            const start = performance.now(),
+                _int = _.sortBy([...SET]),
+                mid = performance.now(),
+                _obj = _.sortBy([...SETobj], 'num'),
+                end = performance.now();
+
+            expect(_int).toEqual(native);
+            expect(_obj).toEqual(nativeObj);
+            times.lodash = {
+                int: mid - start,
+                obj: end - mid
+            };
+        });
+    }
     // test('bitonic', () => {
     //     const start = performance.now(),
     //         ordered = bitonic([...SET2pow]),
@@ -257,62 +336,8 @@ describe('sort ', () => {
     // });
 
 
-    len < 1E5 &&
-    test('gnome', () => {
-        const start = performance.now(),
-            ordered_int = gnome([...SET], (a, b) => a >= b),
-            mid = performance.now(),
-            ordered_obj = gnome([...SETobj], (a, b) => a.num >= b.num),
-            end = performance.now();
 
-        expect(ordered_int).toEqual(native);
-        expect(ordered_obj).toEqual(nativeObj);
-        times.gnome = {
-            int: mid - start,
-            obj: end - mid
-        };
-    });
 
-    len < 1E5 &&
-    test('shell', () => {
-        const start = performance.now(),
-            ordered = shell([...SET]),
-            end = performance.now();
-        expect(ordered).toEqual(native);
-        times.shell = {
-            int: end - start
-        };
-    });
 
-    len < 1E5 &&
-    test('shaker', () => {
-        const start = performance.now(),
-            ordered_int = shaker([...SET], (a, b) => a > b),
-            mid = performance.now(),
-            ordered_obj = shaker([...SETobj], (a, b) => a.num > b.num),
-            end = performance.now();
 
-        expect(ordered_int).toEqual(native);
-        expect(ordered_obj).toEqual(nativeObj);
-        times.shaker = {
-            int: mid - start,
-            obj: end - mid
-        };
-    });
-    
-    len < 1E5 &&
-    test('lodash', () => {
-        const start = performance.now(),
-            _int = _.sortBy([...SET]),
-            mid = performance.now(),
-            _obj = _.sortBy([...SETobj], 'num'),
-            end = performance.now();
-
-        expect(_int).toEqual(native);
-        expect(_obj).toEqual(nativeObj);
-        times.lodash = {
-            int: mid - start,
-            obj: end - mid
-        };
-    });
 });
