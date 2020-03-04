@@ -1,5 +1,0 @@
-Mean on 21 trials (on 100000 elements):
-quick: 23.56
-countingObj: 24.68
-native: 37.51
-fastsort: 51.90
