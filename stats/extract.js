@@ -1,11 +1,10 @@
 const fs = require('fs');
 
-const exps = [2, 3, 4]
+const sizes = [100, 200, 500, 1000, 2000]
 
 const nodev = process.versions.node;
 
-const toLabel = exp => {
-        const val = 10 ** exp;
+const toLabel = val => {
         if (val >= 1e6) return `${val / 1e6}M`;
         if (val >= 1e3) return `${val / 1e3}K`;
         return val;
@@ -13,12 +12,13 @@ const toLabel = exp => {
     createSerie = name => ({
         name,
         type: 'bar',
-        data: exps.map(() => 0)
+        data: sizes.map(() => 0),
+        empty : true
     }),
-    baseName = `stats/${nodev}_%size%_%type%.json`,
-    outFileName = 'glob_%type%.json',
+    baseName = (type, size) => `stats/${nodev}/${size}/${type}.json`,
+    outFileName = type => `glob_${type}.json`,
     types = ['int', 'obj'],
-    data = {
+    dataTpl = {
         title: {
             text: 'Comparison',
         },
@@ -40,7 +40,7 @@ const toLabel = exp => {
         },
         yAxis: {
             type: 'category',
-            data: exps.map(toLabel)
+            data: sizes.map(toLabel)
         },
         series: [
             createSerie('counting'),
@@ -53,11 +53,16 @@ const toLabel = exp => {
             createSerie('bubble'),
             createSerie('insertion'),
             createSerie('selection'),
+            createSerie('counting1'),
             createSerie('counting2'),
+            createSerie('counting3'),
             createSerie('heap'),
             createSerie('gnome'),
             createSerie('shaker'),
-            createSerie('lodash')
+            createSerie('lodash'),
+            createSerie('countingObj'),
+            createSerie('countingObj2'),
+            createSerie('countingObj3'),
         ]
     };
     
@@ -66,42 +71,46 @@ const toLabel = exp => {
 
 
 const buildFile = type => {
-    exps.forEach((exp, index) => {
-        const size = 10 ** exp,
-            content = JSON.parse(fs.readFileSync(
-                baseName.replace(/%type%/, type).replace(/%size%/, size),
+    const data = {...dataTpl};
+    data.title.text = `Type === ${type}`;
+    sizes.forEach((size, index) => {
+        const content = JSON.parse(fs.readFileSync(
+                baseName(type, size),
                 {encoding: 'utf8'}
             ));
+        console.log('content', content)
         Object.keys(content).forEach(k => {
             const theIndex = data.series.find(e => e.name === k)
             if (theIndex) {
                 theIndex.data[index] = content[k]
+                theIndex.empty = false
             }
         });
-        data.title.text = `Type ${type}`
     });
-    
-    return {    // 
-        fileName: outFileName.replace(/%type%/, type),
+    data.series = data.series.filter(d => !d.empty)
+    console.log()
+    console.log('data is: ', data)
+    return {
+        fileName: outFileName(type),
         content: data
     }
 }
 
-const writeFile = ({fileName, content}) => {
-    // console.log(content)
-    // order
-    const data = {
+const writeFile = ({fileName, content}) =>
+console.log(content)||
+    fs.writeFileSync('stats/' + fileName, JSON.stringify({
         ...content,
         series: content.series.sort((a, b) => {
             const aSum = a.data.reduce((acc, el) => acc + el, 0),
                 bSum = b.data.reduce((acc, el) => acc + el, 0);
             return aSum > bSum ? 1 : -1;
         })
-    }
-    fs.writeFileSync('stats/' + fileName, JSON.stringify(data))
-}
+    }));
 
-types.map(buildFile).forEach(writeFile)
+
+var r = types.map(t => buildFile(t))
+console.log('===========')
+r.forEach(writeFile)
 
 
 
