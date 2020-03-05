@@ -1,4 +1,5 @@
-const _ = require('lodash'),
+const fs = require('fs'),
+    _ = require('lodash'),
     quick = require('./strategies/quick'),
     quickObj = require('./strategies/quickObj'),
     merge = require('./strategies/merge'),
@@ -62,9 +63,12 @@ describe('sort ', () => {
             }
         });
 
-        const intPath = `./stats/${nodev}_${len}_int.csv`,
-            objPath = `./stats/${nodev}_${len}_obj.csv`;
-
+        const  dir = `./stats/${nodev}`,
+            intPath = `${dir}/${len}_int.csv`,
+            objPath = `${dir}/${len}_obj.csv`;
+        if (!fs.existsSync(dir)){
+            fs.mkdirSync(dir);
+        }
         writeStats(intPath, csvInt);
         writeStats(objPath, csvObj);        
     })
