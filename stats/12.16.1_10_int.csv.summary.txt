@@ -1,0 +1,6 @@
+Mean on 24 trials (on 10 elements):
+undefined: NaN
+native: 0.02
+ fn): 0.04
+ fn) => mergeSort(arr: 0.05
+(arr: 0.08
