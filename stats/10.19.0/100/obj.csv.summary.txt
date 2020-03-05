@@ -1,0 +1,16 @@
+Mean on 511 trials (on 100 elements):
+countingObj2: 0.052
+countingObj3: 0.061
+countingObj: 0.077
+native: 0.090
+quick: 0.109
+fastsort: 0.123
+bucket: 0.184
+merge: 0.188
+insertion: 0.254
+selection: 0.259
+sbubble: 0.279
+lodash: 0.387
+shaker: 0.399
+gnome: 0.847
+bubble: 1.610
