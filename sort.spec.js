@@ -64,10 +64,15 @@ describe('sort ', () => {
         });
 
         const  dir = `./stats/${nodev}`,
-            intPath = `${dir}/${len}_int.csv`,
-            objPath = `${dir}/${len}_obj.csv`;
+            numDir = `./stats/${nodev}/${len}`
+            intPath = `${numDir}/int.csv`,
+            objPath = `${numDir}/obj.csv`;
+        
         if (!fs.existsSync(dir)){
             fs.mkdirSync(dir);
+        }
+        if (!fs.existsSync(numDir)){
+            fs.mkdirSync(numDir);
         }
         writeStats(intPath, csvInt);
         writeStats(objPath, csvObj);        
