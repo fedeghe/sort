@@ -44,7 +44,7 @@ const writeStats = (file, data) => {
             fs.writeFileSync(
                 file.replace(/([int|obj]\.csv)/, `$1.summary.txt`),
                 Object.keys(out).reduce(
-                    (acc, k) => `${acc}${k}: ${parseFloat(out[k], 10).toFixed(2)}\n` ,
+                    (acc, k) => `${acc}${k}: ${parseFloat(out[k], 10).toFixed(3)}\n` ,
                     `Mean on ${dataLength} trials (on ${len} elements):\n`
                 )
             );
