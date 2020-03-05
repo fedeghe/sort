@@ -6,6 +6,7 @@ const _ = require('lodash'),
     insertion = require('./strategies/insertion'),
     selection = require('./strategies/selection'),
     counting = require('./strategies/counting'),
+    counting1 = require('./strategies/counting1'),
     counting2 = require('./strategies/counting2'),
     counting3 = require('./strategies/counting3'),
     countingObj = require('./strategies/countingObj'),
@@ -200,6 +201,16 @@ describe('sort ', () => {
             end = performance.now();
         expect(ordered).toEqual(native);
         times.counting = {
+            int: end - start
+        };
+    });
+    test('counting1', () => {
+        const start = performance.now(),
+            set = [...SET],
+            ordered = counting1(set),
+            end = performance.now();
+        expect(ordered).toEqual(native);
+        times.counting1 = {
             int: end - start
         };
     });
