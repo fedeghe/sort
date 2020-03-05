@@ -3,6 +3,7 @@ const _ = require('lodash'),
     quickObj = require('./strategies/quickObj'),
     merge = require('./strategies/merge'),
     bubble = require('./strategies/bubble'),
+    sbubble = require('./strategies/sbubble'),
     insertion = require('./strategies/insertion'),
     selection = require('./strategies/selection'),
     counting = require('./strategies/counting'),
@@ -10,6 +11,8 @@ const _ = require('lodash'),
     counting2 = require('./strategies/counting2'),
     counting3 = require('./strategies/counting3'),
     countingObj = require('./strategies/countingObj'),
+    countingObj2 = require('./strategies/countingObj2'),
+    countingObj3 = require('./strategies/countingObj3'),
     radix = require('./strategies/radix'),
     heap = require('./strategies/heap'),
     bitonic = require('./strategies/bitonic'),
@@ -63,32 +66,20 @@ describe('sort ', () => {
             objPath = `./stats/${nodev}_${len}_obj.csv`;
 
         writeStats(intPath, csvInt);
-        writeStats(objPath, csvObj);
-
-        // intRes = int.sort((a, b) => Object.values(a)[0] > Object.values(b)[0] ? 1 : -1);
-        // objRes = obj.sort((a, b) => Object.values(a)[0] > Object.values(b)[0] ? 1 : -1);
-        
-        // console.log(intRes.reduce((acc, o) => {
-        //     let k = Object.keys(o)[0]
-        //     acc += `\n${k}: ${o[k]}`
-        //     return acc
-        // }, 'Leaderboard (INT):'));
-        // console.log(objRes.reduce((acc, o) => {
-        //     let k = Object.keys(o)[0];
-        //     acc += `\n${k}: ${o[k]}`;
-        //     return acc;
-        // }, 'Leaderboard (OBJ):'))
-        
+        writeStats(objPath, csvObj);        
     })
 
     test('native', () => {
+        const set = [...SET],
+            setobj = [...SETobj],
+            set2pow = [...SET2pow];
         const start = performance.now();
-        native = [...SET].sort((a, b) => a > b ? 1 : -1);
+        native = set.sort((a, b) => a > b ? 1 : -1);
         const mid = performance.now();
-        nativeObj = [...SETobj].sort((a, b) => a.num > b.num ? 1 : -1);
+        nativeObj = setobj.sort((a, b) => a.num > b.num ? 1 : -1);
         const end = performance.now();
 
-        native2pow = [...SET2pow].sort((a, b) => a > b ? 1 : -1);
+        native2pow = set2pow.sort((a, b) => a > b ? 1 : -1);
 
         expect(native.length).toEqual(nativeObj.length);
         times.native = {
@@ -97,11 +88,16 @@ describe('sort ', () => {
         };
     })
 
+
+
+
     test('quick', () => {
+        const set = [...SET],
+            setobj = [...SETobj];
         const start = performance.now(),
-            quick_int = quick([...SET]),
+            quick_int = quick(set),
             mid = performance.now(),
-            quick_obj = quickObj([...SETobj], (a, b) => a.num < b.num, (a, b) => a.num > b.num),
+            quick_obj = quickObj(setobj, (a, b) => a.num < b.num, (a, b) => a.num > b.num),
             end = performance.now();
 
         expect(quick_int).toEqual(native);
@@ -112,133 +108,13 @@ describe('sort ', () => {
         };
     });
 
-    len < 1E5 &&
-    test('bucket', () => {
-        const start = performance.now(),
-            bucket_int = bucket([...SET]),
-            mid = performance.now(),
-            bucket_obj = bucket([...SETobj], a => a.num),
-            end = performance.now();
-
-        expect(bucket_int).toEqual(native);
-        expect(bucket_obj).toEqual(nativeObj);
-        times.bucket = {
-            int: mid - start,
-            obj: end - mid
-        };
-    });
-    
-    len < 1E5 &&
-    test('merge', () => {
-        const start = performance.now(),
-            ordered_int = merge([...SET], (a, b) => a < b),
-            mid = performance.now(),
-            ordered_obj = merge([...SETobj], (a, b) => a.num < b.num ),
-            end = performance.now();
-
-        expect(ordered_int).toEqual(native);
-        expect(ordered_obj).toEqual(nativeObj);
-        times.merge = {
-            int: mid - start,
-            obj: end - mid
-        };
-    });
-
-    len < 1E5 &&
-    test('bubble', () => {
-        const start = performance.now(),
-            ordered_int = bubble([...SET], (a, b) => a > b),
-            mid = performance.now(),
-            ordered_obj = bubble([...SETobj], (a, b) => a.num > b.num),
-            end = performance.now();
-
-        expect(ordered_int).toEqual(native);
-        expect(ordered_obj).toEqual(nativeObj);
-        times.bubble = {
-            int: mid - start,
-            obj: end - mid
-        };
-    });
-
-    len < 1E5 &&
-    test('insertion', () => {
-        const start = performance.now(),
-            ordered_int = insertion([...SET], (a, b) => a > b),
-            mid = performance.now(),
-            ordered_obj = insertion([...SETobj], (a, b) => a.num > b.num),
-            end = performance.now();
-
-        expect(ordered_int).toEqual(native);
-        expect(ordered_obj).toEqual(nativeObj);
-        times.insertion = {
-            int: mid - start,
-            obj: end - mid
-        };
-    });
-
-    len < 1E5 &&
-    test('selection', () => {
-        const start = performance.now(),
-            ordered_int = selection([...SET], (a, b) => a > b),
-            mid = performance.now(),
-            ordered_obj = selection([...SETobj], (a, b) => a.num > b.num),
-            end = performance.now();
-
-        expect(ordered_int).toEqual(native);
-        expect(ordered_obj).toEqual(nativeObj);
-        times.selection = {
-            int: mid - start,
-            obj: end - mid
-        };
-    });
-
-    test('counting', () => {
-        const start = performance.now(),
-            set = [...SET],
-            min = set.reduce((acc, el) => acc < el ? acc : el, Infinity),
-            max = set.reduce((acc, el) => acc > el ? acc : el, -Infinity),
-            ordered = counting(set, min, max),
-            end = performance.now();
-        expect(ordered).toEqual(native);
-        times.counting = {
-            int: end - start
-        };
-    });
-    test('counting1', () => {
-        const start = performance.now(),
-            set = [...SET],
-            ordered = counting1(set),
-            end = performance.now();
-        expect(ordered).toEqual(native);
-        times.counting1 = {
-            int: end - start
-        };
-    });
-    test('counting2', () => {
-        const start = performance.now(),
-            set = [...SET],
-            ordered = counting2(set),
-            end = performance.now();
-        expect(ordered).toEqual(native);
-        times.counting2 = {
-            int: end - start
-        };
-    });
-    test('counting3', () => {
-        const start = performance.now(),
-            set = [...SET],
-            ordered = counting3(set),
-            end = performance.now();
-        expect(ordered).toEqual(native);
-        times.counting3 = {
-            int: end - start
-        };
-    });
     test('fastsort', () => {
+        const set = [...SET],
+            setobj = [...SETobj];
         const start = performance.now(),
-            ordered_int = fastsort([...SET]).asc([a => a]),
+            ordered_int = fastsort(set).asc([a => a]),
             mid = performance.now(),
-            ordered_obj = fastsort([...SETobj]).asc([a => a.num]),
+            ordered_obj = fastsort(setobj).asc([a => a.num]),
             end = performance.now();
 
         expect(ordered_int).toEqual(native);
@@ -248,107 +124,114 @@ describe('sort ', () => {
             obj: end - mid
         };
     });
-    test('countingObj', () => {
+
+    test('counting', () => {
+        const set = [...SET],
+            min = set.reduce((acc, el) => acc < el ? acc : el, Infinity),
+            max = set.reduce((acc, el) => acc > el ? acc : el, -Infinity),
+            start = performance.now(),
+            ordered = counting(set, min, max),
+            end = performance.now();
+        expect(ordered).toEqual(native);
+        times.counting = {
+            int: end - start
+        };
+    });
+
+    test.each([
+        ['counting1', counting1],
+        ['counting2', counting2],
+        ['counting3', counting3],
+    ])('%s', (name, func) => {
+        const set = [...SET],
+            start = performance.now(),
+            ordered = func(set),
+            end = performance.now();
+        expect(ordered).toEqual(native);
+        times[name] = {
+            int: end - start
+        };
+    });
+
+    test.each([
+        ['countingObj', countingObj, [[...SETobj], n => n.num]],
+        ['countingObj2', countingObj2, [[...SETobj],n => n.num]],
+        ['countingObj3', countingObj3, [[...SETobj],n => n.num]]
+    ])('%s', (name, func, otherArgs) => {
         const start = performance.now(),
-            set = [...SETobj],
-            ordered = countingObj(set, n => n.num),
+            ordered = func.apply(null, otherArgs),
             end = performance.now();
         expect(ordered).toEqual(nativeObj);
-        times.countingObj = {
+        times[name] = {
             obj: end - start
         };
     });
 
     if (len < 1E5) {
-        test('heap', () => {
-            const start = performance.now(),
-                set = [...SET],
-                ordered = heap(set),
+        test.each([
+            ['heap', heap],
+            ['radix', radix],
+            ['shell', shell],
+        ])('%s', (name, func) => {
+            const set = [...SET],
+                start = performance.now(),
+                ordered = func(set),
                 end = performance.now();
             expect(ordered).toEqual(native);
-            times.heap = {
+            times[name] = {
                 int: end - start
             };
         });
-
-        test('radix', () => {
+        test.each([
+            [
+                'gnome', gnome,
+                [[...SET], (a, b) => a >= b],
+                [[...SETobj], (a, b) => a.num >= b.num]
+            ],
+            [
+                'shaker', shaker,
+                [[...SET], (a, b) => a > b],
+                [[...SETobj], (a, b) => a.num > b.num]
+            ],
+            [
+                'lodash', _.sortBy,
+                [[...SET]],
+                [[...SETobj], 'num']
+            ]
+        ])('%s', (name, func, argsInt, argsObj) => {
             const start = performance.now(),
-                ordered = radix([...SET]),
-                end = performance.now();
-            expect(ordered).toEqual(native);
-            times.radix = {
-                int: end - start
-            };
-        });
-
-        test('gnome', () => {
-            const start = performance.now(),
-                ordered_int = gnome([...SET], (a, b) => a >= b),
+                ordered_int = func.apply(null, argsInt),
                 mid = performance.now(),
-                ordered_obj = gnome([...SETobj], (a, b) => a.num >= b.num),
+                ordered_obj = func.apply(null, argsObj),
                 end = performance.now();
 
             expect(ordered_int).toEqual(native);
             expect(ordered_obj).toEqual(nativeObj);
-            times.gnome = {
+            times[name] = {
                 int: mid - start,
                 obj: end - mid
             };
         });
-
-        test('shell', () => {
+        test.each([
+            ['bucket', bucket, [[...SET]], [[...SETobj], a => a.num ]],
+            ['merge', merge, [[...SET], (a, b) => a < b], [[...SETobj], (a, b) => a.num < b.num]],
+            ['bubble', bubble, [[...SET], (a, b) => a > b], [[...SETobj], (a, b) => a.num > b.num]],
+            ['sbubble', sbubble, [[...SET], (a, b) => a > b], [[...SETobj], (a, b) => a.num > b.num]],
+            ['insertion', insertion, [[...SET], (a, b) => a > b], [[...SETobj], (a, b) => a.num > b.num]],
+            ['selection', insertion, [[...SET], (a, b) => a > b], [[...SETobj], (a, b) => a.num > b.num]],
+        ])('%s', (name, func, argsInt, argsObj) => {
             const start = performance.now(),
-                ordered = shell([...SET]),
-                end = performance.now();
-            expect(ordered).toEqual(native);
-            times.shell = {
-                int: end - start
-            };
-        });
-
-        test('shaker', () => {
-            const start = performance.now(),
-                ordered_int = shaker([...SET], (a, b) => a > b),
+                _int = func.apply(null, argsInt),
                 mid = performance.now(),
-                ordered_obj = shaker([...SETobj], (a, b) => a.num > b.num),
-                end = performance.now();
-
-            expect(ordered_int).toEqual(native);
-            expect(ordered_obj).toEqual(nativeObj);
-            times.shaker = {
-                int: mid - start,
-                obj: end - mid
-            };
-        });
-        
-        test('lodash', () => {
-            const start = performance.now(),
-                _int = _.sortBy([...SET]),
-                mid = performance.now(),
-                _obj = _.sortBy([...SETobj], 'num'),
+                _obj = func.apply(null, argsObj),
                 end = performance.now();
 
             expect(_int).toEqual(native);
             expect(_obj).toEqual(nativeObj);
-            times.lodash = {
+            times[name] = {
                 int: mid - start,
                 obj: end - mid
             };
         });
     }
-    // test('bitonic', () => {
-    //     const start = performance.now(),
-    //         ordered = bitonic([...SET2pow]),
-    //         end = performance.now();
-    //     expect(ordered).toEqual(native2pow);
-    //     times.bitonic = {
-    //         int: end - start
-    //     };
-    // });
-
-
-
-
-
-
 });
