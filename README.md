@@ -1,5 +1,5 @@
 # Sort
-Exploring and challenging most sorting algorithms in the best language ever.
+Exploring and challenging most sorting algorithms in _javascript_.
 
 Here I will list the results of some test ran on different benchmarks. What matters here is the size of the input array, and its content. As You will see comparing the outcomes of different node versions, the `Array.prototype.sort` got better in the most recent one (actually from 11.x.x).
 
