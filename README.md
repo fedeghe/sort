@@ -1,7 +1,7 @@
 # Sort
 Exploring and challenging most sorting algorithms in _javascript_.
 
-Below I will list the results of some test ran on different benchmarks. What matters here is the size of the input array, and its content. As You will see comparing the outcomes of different node versions, the `Array.prototype.sort` got better in the most recent one (actually from 11.x.x).
+Below I will list the results of some tests ran on different benchmarks. What matters here is the size of the input array, and its content. As You will see comparing the outcomes of different node versions, the `Array.prototype.sort` got better in the most recent one (actually from 11.x.x).
 
 The strategy named _native_ in the tables below is the `Array.prototype.sort` function which turns surprisingly to **not** be the fastest solution, at least when not using an up to date _node_ version. Another reson to keep your _node_ up to date.  
 For curiosity I also added _lodash_ using the _\_.sort\_by_ function.  
