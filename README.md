@@ -15,9 +15,11 @@ stats On _node_ **v10.14.1**
 - 200 elements [[int](https://github.com/fedeghe/sort/blob/master/stats/10.19.0/200/int.csv.summary.txt), [obj](https://github.com/fedeghe/sort/blob/master/stats/10.19.0/200/obj.csv.summary.txt)]  
 - 500 elements [[int](https://github.com/fedeghe/sort/blob/master/stats/10.19.0/500/int.csv.summary.txt), [obj](https://github.com/fedeghe/sort/blob/master/stats/10.19.0/500/obj.csv.summary.txt)]  
 - 1000 elements [[int](https://github.com/fedeghe/sort/blob/master/stats/10.19.0/1000/int.csv.summary.txt), [obj](https://github.com/fedeghe/sort/blob/master/stats/10.19.0/1000/obj.csv.summary.txt)]  
+- 2000 elements [[int](https://github.com/fedeghe/sort/blob/master/stats/10.19.0/2000/int.csv.summary.txt), [obj](https://github.com/fedeghe/sort/blob/master/stats/10.19.0/2000/obj.csv.summary.txt)]  
 
 stats On _node_ **v12.16.1**  
 - 100 elements [[int](https://github.com/fedeghe/sort/blob/master/stats/12.16.1/100/int.csv.summary.txt), [obj](https://github.com/fedeghe/sort/blob/master/stats/12.16.1/100/obj.csv.summary.txt)]  
 - 200 elements [[int](https://github.com/fedeghe/sort/blob/master/stats/12.16.1/200/int.csv.summary.txt), [obj](https://github.com/fedeghe/sort/blob/master/stats/12.16.1/200/obj.csv.summary.txt)]  
 - 500 elements [[int](https://github.com/fedeghe/sort/blob/master/stats/12.16.1/500/int.csv.summary.txt), [obj](https://github.com/fedeghe/sort/blob/master/stats/12.16.1/500/obj.csv.summary.txt)]  
 - 1000 elements [[int](https://github.com/fedeghe/sort/blob/master/stats/12.16.1/1000/int.csv.summary.txt), [obj](https://github.com/fedeghe/sort/blob/master/stats/12.16.1/1000/obj.csv.summary.txt)]  
+- 2000 elements [[int](https://github.com/fedeghe/sort/blob/master/stats/12.16.1/2000/int.csv.summary.txt), [obj](https://github.com/fedeghe/sort/blob/master/stats/12.16.1/2000/obj.csv.summary.txt)]  
