@@ -1,1 +1,1 @@
-{"native":0.06,"countingObj3":0.11,"quick":0.13,"countingObj2":0.14,"countingObj":0.14,"fastsort":0.2,"merge":0.26,"bucket":0.27,"selection":0.31,"sbubble":0.46,"lodash":0.53,"insertion":0.56,"shaker":0.87,"gnome":1.11,"bubble":3.08}
+{"native":0.06,"countingObj3":0.11,"quick":0.14,"countingObj2":0.14,"countingObj":0.14,"fastsort":0.19,"merge":0.26,"bucket":0.26,"selection":0.31,"sbubble":0.46,"lodash":0.53,"insertion":0.55,"shaker":0.86,"gnome":1.1,"bubble":3.06}

@@ -1,20 +1,20 @@
-Mean on 505 trials (on 500 elements):
-counting: 0.134
-counting3: 0.138
-counting1: 0.155
-counting2: 0.182
-native: 0.233
-quick: 0.376
-shell: 0.651
-radix: 0.761
-fastsort: 0.794
-bucket: 1.151
-merge: 1.305
-lodash: 2.117
-insertion: 2.905
-sbubble: 3.174
-gnome: 3.505
-heap: 3.675
-bubble: 3.758
-shaker: 4.482
-selection: 6.608
+Mean on 506 trials (on 500 elements):
+counting: 0.134 [best: 0.081, worst: 12.210]
+counting3: 0.139 [best: 0.076, worst: 5.718]
+counting1: 0.155 [best: 0.078, worst: 20.977]
+counting2: 0.182 [best: 0.081, worst: 20.214]
+native: 0.233 [best: 0.134, worst: 20.131]
+quick: 0.376 [best: 0.294, worst: 2.163]
+shell: 0.656 [best: 0.356, worst: 13.245]
+radix: 0.761 [best: 0.453, worst: 16.124]
+fastsort: 0.794 [best: 0.591, worst: 11.356]
+bucket: 1.150 [best: 0.526, worst: 174.634]
+merge: 1.304 [best: 0.707, worst: 22.418]
+lodash: 2.121 [best: 1.427, worst: 15.419]
+insertion: 2.905 [best: 1.685, worst: 118.644]
+sbubble: 3.173 [best: 1.971, worst: 26.991]
+gnome: 3.503 [best: 2.169, worst: 29.853]
+heap: 3.677 [best: 1.505, worst: 20.516]
+bubble: 3.757 [best: 2.357, worst: 158.066]
+shaker: 4.480 [best: 2.976, worst: 45.306]
+selection: 6.612 [best: 4.292, worst: 119.907]

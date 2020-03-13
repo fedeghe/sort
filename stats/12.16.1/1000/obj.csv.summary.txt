@@ -1,16 +1,16 @@
-Mean on 506 trials (on 1000 elements):
-countingObj: 0.479
-countingObj2: 0.487
-countingObj3: 0.521
-native: 0.538
-quick: 1.874
-fastsort: 2.369
-merge: 4.093
-lodash: 5.100
-bucket: 7.453
-selection: 7.611
-insertion: 8.119
-sbubble: 9.606
-shaker: 10.970
-gnome: 11.777
-bubble: 19.115
+Mean on 507 trials (on 1000 elements):
+countingObj: 0.479 [best: 0.243, worst: 12.237]
+countingObj2: 0.487 [best: 0.231, worst: 18.713]
+countingObj3: 0.521 [best: 0.235, worst: 17.513]
+native: 0.537 [best: 0.361, worst: 12.259]
+quick: 1.872 [best: 0.984, worst: 17.706]
+fastsort: 2.368 [best: 1.117, worst: 215.922]
+merge: 4.089 [best: 1.688, worst: 40.855]
+lodash: 5.096 [best: 2.395, worst: 129.239]
+bucket: 7.446 [best: 3.870, worst: 128.961]
+selection: 7.605 [best: 4.394, worst: 148.155]
+insertion: 8.113 [best: 4.778, worst: 146.465]
+sbubble: 9.599 [best: 5.748, worst: 266.390]
+shaker: 10.963 [best: 7.488, worst: 74.878]
+gnome: 11.769 [best: 7.624, worst: 178.568]
+bubble: 19.117 [best: 13.195, worst: 152.144]
