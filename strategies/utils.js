@@ -12,7 +12,11 @@ const writeStats = (file, data) => {
             const lines = contents.split(/\n/)
             const titles = lines[0].split(',');
             let res = titles.reduce((acc, el) => {
-                acc[el] = 0;
+                acc[el] = {
+                    value: 0,
+                    min: Infinity,
+                    max: -Infinity
+                }
                 return acc;
             }, {})
             const data = lines.slice(1);
@@ -22,29 +26,42 @@ const writeStats = (file, data) => {
                 if (line.length === 0) return r;
                 const values = line.split(',');
                 values.forEach((v, i) => {
-                    r[titles[i]] += parseFloat(v);
+                    let val = parseFloat(v);
+                    r[titles[i]].value += val;
+                    r[titles[i]].min = Math.min(r[titles[i]].min, val);
+                    r[titles[i]].max = Math.max(r[titles[i]].max, val);
                 })
                 return r;
             }, res);
 
+
+            
             // get mean
             res = Object.keys(res).reduce((acc, k) => {
-                acc[k] = res[k] / dataLength;
+                acc[k] = {
+                    ...res[k],
+                    value: res[k].value / dataLength
+                }
                 return acc;
             }, {});
+            
 
             const keys = Object.keys(res);
             const out = {}
             keys.sort((a,b) => 
-                res[a] > res[b] ? 1: -1
+                res[a].value > res[b].value ? 1: -1
             ).forEach(k => {
                 out[k] = res[k]
             })
-
+            // console.log(out)
             fs.writeFileSync(
                 file.replace(/([int|obj]\.csv)/, `$1.summary.txt`),
                 Object.keys(out).reduce(
-                    (acc, k) => `${acc}${k}: ${parseFloat(out[k], 10).toFixed(3)}\n` ,
+                    (acc, k) => {
+                        // console.log(out[k])
+                        const makeReadable = v => parseFloat(v, 10).toFixed(3)
+                        return `${acc}${k}: ${makeReadable(out[k].value)} [best: ${makeReadable(out[k].min)}, worst: ${makeReadable(out[k].max)}]\n`
+                    },
                     `Mean on ${dataLength} trials (on ${len} elements):\n`
                 )
             );
@@ -52,7 +69,7 @@ const writeStats = (file, data) => {
                 file.replace(/([int|obj])\.csv/, `$1.json`),
                 JSON.stringify(Object.keys(out).reduce(
                     (acc, k) => {
-                        acc[k] = parseFloat(out[k].toFixed(2), 10);
+                        acc[k] = parseFloat(out[k].value.toFixed(2), 10);
                         return acc;
                     },
                     {}
