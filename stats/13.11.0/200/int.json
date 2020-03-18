@@ -1,0 +1,1 @@
+{"counting1":0.05,"counting":0.05,"counting2":0.05,"native":0.06,"counting3":0.06,"quick":0.14,"shell":0.18,"fastsort":0.24,"bucket":0.31,"radix":0.31,"merge":0.47,"heap":0.55,"lodash":0.69,"insertion":0.79,"selection":1.14,"sbubble":2.26,"bubble":2.49,"gnome":3.1,"shaker":3.73}

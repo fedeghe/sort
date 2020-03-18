@@ -43,27 +43,7 @@ const toLabel = val => {
             data: sizes.map(toLabel)
         },
         series: [
-            createSerie('counting'),
-            createSerie('quick'),
-            createSerie('native'),
-            createSerie('shell'),
-            createSerie('radix'),
-            createSerie('merge'),
-            createSerie('bucket'),
-            createSerie('bubble'),
-            createSerie('insertion'),
-            createSerie('selection'),
-            createSerie('counting1'),
-            createSerie('counting2'),
-            createSerie('counting3'),
-            createSerie('heap'),
-            createSerie('gnome'),
-            createSerie('shaker'),
-            createSerie('lodash'),
-            createSerie('countingObj'),
-            createSerie('countingObj2'),
-            createSerie('countingObj3'),
-        ]
+            'counting', 'quick', 'native', 'shell', 'radix', 'merge', 'bucket', 'bubble', 'insertion', 'selection', 'counting1', 'counting2', 'counting3', 'heap', 'gnome', 'shaker', 'lodash', 'countingObj', 'countingObj2', 'countingObj3'].map(createSerie)
     };
     
 
