@@ -20,8 +20,6 @@
         "malta-dev-srv": "^1.1.6"
     },
     "jest": {
-        "modulePathIgnorePatterns": [
-            "stats"
-        ]
+        "modulePathIgnorePatterns": []
     }
 }

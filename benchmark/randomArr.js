@@ -1,4 +1,4 @@
-const len = 1e2,
+const len = 2e3,
     len2 = 2**10,
     base = Array.from({length: len}, i => i),
     base2pow = Array.from({length: len2}, i => i),
