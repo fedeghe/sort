@@ -12,11 +12,12 @@
     "repository": "https://github.com/fedeghe/sort.git",
     "author": "fedeghe <fedeghe@gmail.com>",
     "dependencies": {
+        "acorn": "^7.1.1",
         "echarts": "^4.6.0",
         "fast-sort": "^2.1.1",
-        "jest": "^25.1.0",
+        "jest": "^25.2.3",
         "lodash": "^4.17.15",
-        "malta": "^4.0.7",
+        "malta": "^4.1.12",
         "malta-dev-srv": "^1.1.6"
     },
     "jest": {
