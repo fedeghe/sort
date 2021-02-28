@@ -18,7 +18,8 @@
         "jest": "^25.2.3",
         "lodash": "^4.17.21",
         "malta": "^4.1.12",
-        "malta-dev-srv": "^1.1.6"
+        "malta-dev-srv": "^1.1.6",
+        "node-notifier": "^9.0.0"
     },
     "jest": {
         "modulePathIgnorePatterns": []
