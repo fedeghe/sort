@@ -1,1 +1,1 @@
-{"counting":0.06,"counting1":0.06,"counting3":0.06,"native":0.07,"counting2":0.07,"quick":0.17,"fastsort":0.3,"bucket":0.35,"shell":0.35,"radix":0.37,"merge":0.68,"heap":0.74,"lodash":1.05,"insertion":1.16,"selection":2.64,"sbubble":2.7,"bubble":2.86,"gnome":3.43,"shaker":4.1}
+{"native":0.03,"counting":0.04,"counting1":0.04,"counting3":0.05,"counting2":0.06,"quick":0.11,"shell":0.12,"bucket":0.14,"radix":0.15,"fastsort":0.17,"merge":0.2,"heap":0.27,"selection":0.41,"insertion":0.43,"lodash":0.51,"bubble":1.05,"sbubble":1.11,"gnome":1.19,"shaker":1.75}
